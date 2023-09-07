@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-  Image,
-} from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 // 创建样式
 const styles = StyleSheet.create({
@@ -47,14 +40,13 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
-
+// interface PdfSchema {}
 // 创建pdf文档
 const PdfContainer = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text style={styles.title}>PDF Example</Text>
-        <Image src="https://www.example.com/logo.png" style={styles.image} />
         <Text>Section #1</Text>
       </View>
       <View style={styles.section}>
