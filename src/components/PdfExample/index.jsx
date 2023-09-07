@@ -9,11 +9,10 @@ import {
   // Font,
 } from "@react-pdf/renderer";
 import QRCode from "../QRCode";
+import CustomTable from "../CustomTable";
 
 const styles = StyleSheet.create({
   body: {
-    paddingTop: 35,
-    paddingBottom: 65,
     paddingHorizontal: 35,
   },
   title: {
@@ -45,6 +44,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "grey",
   },
+  headerUnderline: {
+    borderBottom: "1pt solid black",
+  },
   pageNumber: {
     position: "absolute",
     fontSize: 12,
@@ -58,15 +60,18 @@ const styles = StyleSheet.create({
 
 function PdfExample() {
   const qrCodeData = "https://example.com";
-
+  const tableData = [["John Doe"], ["Jane Smith"], ["Jane Smith"]];
   return (
     <Document>
       <Page style={styles.body}>
-        <Text style={styles.header} fixed>
-          DF Example
-        </Text>
+        <View style={styles.headerUnderline}>
+          <Text style={styles.header} fixed>
+            uuuuuuuuus
+          </Text>
+        </View>
+        <CustomTable data={tableData} />
         <View style={styles.image}>
-          <QRCode value="https://example.com" size={150} />
+          <QRCode value={qrCodeData} size={150} />
         </View>
         <Text style={styles.header}>Do</Text>
         <Text style={styles.author}>Miguel de Cervantes</Text>
