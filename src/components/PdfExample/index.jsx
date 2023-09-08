@@ -10,10 +10,27 @@ import {
 } from "@react-pdf/renderer";
 import QRCode from "../QRCode";
 import CustomTable from "../CustomTable";
+const watermarkText = "  Watermark  "; // 水印文字
 
 const styles = StyleSheet.create({
+  watermarkText: {
+    position: "absolute",
+    left: "-29vw",
+    top: 0,
+    right: "-29vw",
+    bottom: 0,
+    display: "flex",
+    transform: `rotate(45deg)`,
+  },
+  watermarkPadding: {
+    opacity: 0.1,
+    fontSize: 19,
+    lineHeight: 5.5,
+    padding: 10,
+  },
   body: {
     paddingHorizontal: 35,
+    position: "relative",
   },
   title: {
     fontSize: 24,
@@ -64,9 +81,16 @@ function PdfExample() {
   return (
     <Document>
       <Page style={styles.body}>
+        <View style={styles.watermarkText} fixed>
+          <Text>
+            {Array.from({ length: 1000 }, (_, index) => index).map(() => (
+              <Text style={styles.watermarkPadding}>{watermarkText}</Text>
+            ))}
+          </Text>
+        </View>
         <View style={styles.headerUnderline}>
           <Text style={styles.header} fixed>
-            uuuuuuuuus
+            页眉
           </Text>
         </View>
         <CustomTable data={tableData} />
