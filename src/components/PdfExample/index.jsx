@@ -1,16 +1,19 @@
-import React from "react";
 import {
-  Page,
-  Text,
   Document,
+  Font,
+  Page,
   StyleSheet,
-  Image,
+  Text,
   View,
-  // Font,
 } from "@react-pdf/renderer";
+import React from "react";
+import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
+import PageHeader from "../PageHeader";
 import QRCode from "../QRCode";
-import CustomTable from "../CustomTable";
+
 const watermarkText = "  Watermark  "; // 水印文字
+
+Font.register({ family: "pingFang", src: PingFangFont });
 
 const styles = StyleSheet.create({
   watermarkText: {
@@ -31,6 +34,7 @@ const styles = StyleSheet.create({
   body: {
     paddingHorizontal: 35,
     position: "relative",
+    fontFamily: "pingFang",
   },
   title: {
     fontSize: 24,
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
   },
   author: {
     fontSize: 12,
+    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 40,
   },
@@ -77,48 +82,75 @@ const styles = StyleSheet.create({
 
 function PdfExample() {
   const qrCodeData = "https://example.com";
-  const tableData = [["John Doe"], ["Jane Smith"], ["Jane Smith"]];
+  const tableData = [
+    [
+      { title: "CDCC DM & HT Management Optometry", isBold: true, col: "1" },
+      { title: "HKIC No", value: "s230024(0)", isBold: true, col: "2" },
+      {
+        title: "Name",
+        value: "zhangsanxxxxxxddddddd",
+        isBold: true,
+        col: "2",
+      },
+      { title: "DOB", value: "01-Jan-1960", isBold: true, col: "2" },
+      { title: "Age", value: "63", unit: "years", isBold: true, col: "2" },
+      { title: "Male", value: "Male", isBold: true, col: "2" },
+    ],
+    [
+      { title: "Consultation Summary", value: "", isBold: true },
+      { title: "Prof Service", value: "Optomertry Service" },
+      { title: "Programme", value: "Chonic Disease Co-Care Pilot Scheme" },
+      { title: "Create Centre", value: "VHC4 HOSPITAL" },
+      { title: "Create by", value: "Doctor TASHSOP, DOCTOR001" },
+    ],
+  ];
   return (
     <Document>
       <Page style={styles.body}>
         <View style={styles.watermarkText} fixed>
           <Text>
-            {Array.from({ length: 1000 }, (_, index) => index).map(() => (
-              <Text style={styles.watermarkPadding}>{watermarkText}</Text>
+            {Array.from({ length: 1000 }, (_, index) => index).map((k) => (
+              <Text key={k} style={styles.watermarkPadding}>
+                {watermarkText}
+              </Text>
             ))}
           </Text>
         </View>
-        <View style={styles.headerUnderline}>
-          <Text style={styles.header} fixed>
-            页眉
-          </Text>
-        </View>
-        <CustomTable data={tableData} />
+        {/* 页眉使用方式1.type==='text', 2.type==='table' */}
+        {/* <PageHeader
+          text="For cinical use only and not for distrbution"
+          isShowPage
+          type="text"
+          textAlign="right"
+          textDecoration="underline"
+        /> */}
+        <PageHeader isShowPage type="table" tableData={tableData} />
+
         <View style={styles.image}>
           <QRCode value={qrCodeData} size={150} />
         </View>
-        <Text style={styles.header}>Do</Text>
+        <Text style={styles.header}>Do我问你夔</Text>
         <Text style={styles.author}>Miguel de Cervantes</Text>
         <Text style={styles.subtitle}>xxxx</Text>
         <Text style={styles.text}>
-          En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha
-          mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga
-          antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que
-          carnero, salpicón las más noches, duelos y quebrantos los sábados,
-          lentejas los viernes, algún palomino de añadidura los domingos,
-          consumían las tres partes de su hacienda. El resto della concluían
-          sayo de velarte, calzas de velludo para las fiestas con sus pantuflos
-          de lo mismo, los días de entre semana se honraba con su vellori de lo
-          más fino. Tenía en su casa una ama que pasaba de los cuarenta, y una
-          sobrina que no llegaba a los veinte, y un mozo de campo y plaza, que
-          así ensillaba el rocín como tomaba la podadera. Frisaba la edad de
-          nuestro hidalgo con los cincuenta años, era de complexión recia, seco
-          de carnes, enjuto de rostro; gran madrugador y amigo de la caza.
-          Quieren decir que tenía el sobrenombre de Quijada o Quesada (que en
-          esto hay alguna diferencia en los autores que deste caso escriben),
-          aunque por conjeturas verosímiles se deja entender que se llama
-          Quijana; pero esto importa poco a nuestro cuento; basta que en la
-          narración dél no se salga un punto de la verdad
+          哈哈奤En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no
+          ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
+          adarga antigua, rocín flaco y galgo corredor. Una olla de algo más
+          vaca que carnero, salpicón las más noches, duelos y quebrantos los
+          sábados, lentejas los viernes, algún palomino de añadidura los
+          domingos, consumían las tres partes de su hacienda. El resto della
+          concluían sayo de velarte, calzas de velludo para las fiestas con sus
+          pantuflos de lo mismo, los días de entre semana se honraba con su
+          vellori de lo más fino. Tenía en su casa una ama que pasaba de los
+          cuarenta, y una sobrina que no llegaba a los veinte, y un mozo de
+          campo y plaza, que así ensillaba el rocín como tomaba la podadera.
+          Frisaba la edad de nuestro hidalgo con los cincuenta años, era de
+          complexión recia, seco de carnes, enjuto de rostro; gran madrugador y
+          amigo de la caza. Quieren decir que tenía el sobrenombre de Quijada o
+          Quesada (que en esto hay alguna diferencia en los autores que deste
+          caso escriben), aunque por conjeturas verosímiles se deja entender que
+          se llama Quijana; pero esto importa poco a nuestro cuento; basta que
+          en la narración dél no se salga un punto de la verdad
         </Text>
         <Text style={styles.text}>
           Es, pues, de saber, que este sobredicho hidalgo, los ratos que estaba
