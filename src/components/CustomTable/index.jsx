@@ -44,24 +44,27 @@ const TableRow = ({ data }) => {
 
 const TableCell = ({ cell }) => {
   return (
-    <Text style={styles.tableCell}>
+    <View style={styles.tableCell}>
       {cell.list.map((k) => (
-        <>
+        <View key={k.value} style={{ display: "flex", flexDirection: "row" }}>
           <Text
-            key={k.title}
-            style={{ fontFamily: k.isBold ? "arial" : "pingFang", width: 200 }}
+            style={{
+              fontFamily: k.isBold ? "arial" : "pingFang",
+              width: k?.titleWidth,
+            }}
           >
             {k.title}
             {k.value ? ":" : ""}
           </Text>
-          <Text key={k.value}>
+
+          <Text style={{ flex: 1 }}>
             {" "}
             {k.value}
             {"\n"}
           </Text>
-        </>
+        </View>
       ))}
-    </Text>
+    </View>
   );
 };
 
