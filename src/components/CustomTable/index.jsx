@@ -57,8 +57,7 @@ const TableCell = ({ cell }) => {
             {k.value ? ":" : ""}
           </Text>
 
-          <Text style={{ flex: 1 }}>
-            {" "}
+          <Text style={{ flex: 1, top: k.isBold ? "-2pt" : "" }}>
             {k.value}
             {"\n"}
           </Text>
