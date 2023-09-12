@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   body: {
+    paddingBottom: 60,
     paddingHorizontal: 35,
     position: "relative",
     fontFamily: "pingFang",
