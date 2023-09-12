@@ -58,7 +58,7 @@ const TableCell = ({ cell }) => {
           </Text>
 
           <Text style={{ flex: 1, top: k.isBold ? "-2pt" : "" }}>
-            {k.value}
+            {k.value} {k.unit}
             {"\n"}
           </Text>
         </View>
