@@ -8,6 +8,7 @@ import {
 } from "@react-pdf/renderer";
 import React from "react";
 import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
+import CustomTable from "../CustomTable";
 import PageHeader from "../PageHeader";
 import QRCode from "../QRCode";
 
@@ -116,15 +117,9 @@ function PdfExample() {
             ))}
           </Text>
         </View>
-        {/* 页眉使用方式1.type==='text', 2.type==='table' */}
-        {/* <PageHeader
-          text="For cinical use only and not for distrbution"
-          isShowPage
-          type="text"
-          textAlign="right"
-          textDecoration="underline"
-        /> */}
-        <PageHeader isShowPage type="table" tableData={tableData} />
+
+        <PageHeader />
+        <CustomTable data={tableData} />
 
         <View style={styles.image}>
           <QRCode value={qrCodeData} size={150} />

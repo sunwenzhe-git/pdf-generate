@@ -1,15 +1,22 @@
+import { Font, StyleSheet, Text, View } from "@react-pdf/renderer";
+import { chain, zipObject } from "lodash";
 import React from "react";
-import { View, StyleSheet, Text } from "@react-pdf/renderer";
+import ArialFont from "../../assets/font/Arial.ttf";
 import { formatIteratorsData } from "../../utils";
 
+Font.register({ family: "arial", src: ArialFont });
+
 const styles = StyleSheet.create({
-  table: { width: "100%", border: "1px solid black" },
+  table: { width: "100%", border: "1px solid black", fontSize: 12 },
   tableRow: { flexDirection: "row" },
-  tableCell: { flex: 1, border: "1px solid black", padding: 5 },
+  tableCell: {
+    flex: 1,
+    border: "1px solid black",
+    padding: 5,
+  },
 });
 
 const CustomTable = ({ data }) => {
-  console.log(data, "jjj");
   return (
     <View style={styles.table}>
       {formatIteratorsData(data).map((row, rowIndex) => (
@@ -20,17 +27,42 @@ const CustomTable = ({ data }) => {
 };
 
 const TableRow = ({ data }) => {
+  const cellData = chain(data)
+    .sortBy("col")
+    .groupBy("col")
+    .toPairs()
+    .map((item) => zipObject(["group", "list"], item))
+    .value();
   return (
     <View style={styles.tableRow}>
-      {formatIteratorsData(data).map((cell, cellIndex) => (
-        <TableCell key={cellIndex} text={cell} />
+      {formatIteratorsData(cellData).map((cell, cellIndex) => (
+        <TableCell key={cellIndex} cell={cell} />
       ))}
     </View>
   );
 };
 
-const TableCell = ({ text }) => {
-  return <Text style={styles.tableCell}>{text}</Text>;
+const TableCell = ({ cell }) => {
+  return (
+    <Text style={styles.tableCell}>
+      {cell.list.map((k) => (
+        <>
+          <Text
+            key={k.title}
+            style={{ fontFamily: k.isBold ? "arial" : "pingFang", width: 200 }}
+          >
+            {k.title}
+            {k.value ? ":" : ""}
+          </Text>
+          <Text key={k.value}>
+            {" "}
+            {k.value}
+            {"\n"}
+          </Text>
+        </>
+      ))}
+    </Text>
+  );
 };
 
 export default CustomTable;
