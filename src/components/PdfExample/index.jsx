@@ -1,6 +1,7 @@
 import {
   Document,
   Font,
+  Image,
   Page,
   StyleSheet,
   Text,
@@ -25,6 +26,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     display: "flex",
     transform: `rotate(45deg)`,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   watermarkPadding: {
     opacity: 0.1,
@@ -79,6 +82,10 @@ const styles = StyleSheet.create({
     right: 0,
     textAlign: "center",
     color: "grey",
+  },
+  image1: {
+    marginVertical: 25,
+    width: 100,
   },
 });
 
@@ -139,10 +146,30 @@ function PdfExample() {
       },
     ],
   ];
+
+  //文字转图片
+  function textToImage(text) {
+    let tLength = text.length; //获取文本个数
+    let canvas = document.createElement("canvas"); //创建画布
+    canvas.width = tLength * 15; //设置画布宽度，15为字体大小
+    canvas.height = 22; //设置画布高度
+    let context = canvas.getContext("2d"); //获取绘图环境
+    context.textAlign = "center"; //设置居中
+    context.fillStyle = "#fff"; //设置白色画笔
+    context.fillRect(0, 0, canvas.width, canvas.height); //绘制白色背景，rect为方形
+    context.font = "100 15px 宋体"; //加粗，字号，字体
+    context.fillStyle = "#808080"; //设置黑色画笔
+    context.fillText(text, canvas.width / 2, canvas.height / 2); //添加文字
+    return canvas.toDataURL("image/jpeg"); //返回Base64
+  }
+
+  const img2 = textToImage("测试水印haha");
+  console.log("imgs2", img2);
+
   return (
     <Document>
       <Page style={styles.body}>
-        <View style={styles.watermarkText} fixed>
+        {/* <View style={styles.watermarkText} fixed>
           <Text>
             {Array.from({ length: 1000 }, (_, index) => index).map((k) => (
               <Text key={k} style={styles.watermarkPadding}>
@@ -150,6 +177,12 @@ function PdfExample() {
               </Text>
             ))}
           </Text>
+        </View> */}
+
+        <View style={styles.watermarkText} fixed>
+          {Array.from({ length: 200 }, (_, index) => index).map((k) => (
+            <Image key={k} src={img2} style={styles.image1}></Image>
+          ))}
         </View>
 
         <PageHeader />
