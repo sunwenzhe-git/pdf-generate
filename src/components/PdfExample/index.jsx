@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   body: {
+    paddingBottom: 60,
     paddingHorizontal: 35,
     position: "relative",
     fontFamily: "pingFang",
@@ -86,23 +87,56 @@ function PdfExample() {
   const tableData = [
     [
       { title: "CDCC DM & HT Management Optometry", isBold: true, col: "1" },
-      { title: "HKIC No", value: "s230024(0)", isBold: true, col: "2" },
       {
-        title: "Name",
-        value: "zhangsanxxxxxxddddddd",
+        title: "HKIC No",
+        value: "s230024(0)",
         isBold: true,
         col: "2",
+        titleWidth: 60,
       },
-      { title: "DOB", value: "01-Jan-1960", isBold: true, col: "2" },
-      { title: "Age", value: "63", unit: "years", isBold: true, col: "2" },
-      { title: "Male", value: "Male", isBold: true, col: "2" },
+      {
+        title: "Name",
+        value: "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
+        isBold: true,
+        col: "2",
+        titleWidth: 60,
+      },
+      {
+        title: "DOB",
+        value: "01-Jan-1960",
+        isBold: true,
+        col: "2",
+        titleWidth: 60,
+      },
+      {
+        title: "Age",
+        value: "63",
+        unit: "years",
+        isBold: true,
+        col: "2",
+        titleWidth: 60,
+      },
+      { title: "Male", value: "Male", isBold: true, col: "2", titleWidth: 60 },
     ],
     [
       { title: "Consultation Summary", value: "", isBold: true },
-      { title: "Prof Service", value: "Optomertry Service" },
-      { title: "Programme", value: "Chonic Disease Co-Care Pilot Scheme" },
-      { title: "Create Centre", value: "VHC4 HOSPITAL" },
-      { title: "Create by", value: "Doctor TASHSOP, DOCTOR001" },
+      { title: "Prof Service", value: "Optomertry Service", titleWidth: 100 },
+      {
+        title: "Programme",
+        value: "Chonic Disease Co-Care Pilot Scheme",
+        titleWidth: 100,
+      },
+      {
+        title: "Create Centre",
+        value:
+          "VHC4 HOSPITALmkmkmkmkmkmkmkmkmmkmkmkmkmmlkdsdsppoeiwoeijijioqjodioeiie",
+        titleWidth: 100,
+      },
+      {
+        title: "Create by",
+        value: "Doctor TASHSOP, DOCTOR001",
+        titleWidth: 100,
+      },
     ],
   ];
   return (
