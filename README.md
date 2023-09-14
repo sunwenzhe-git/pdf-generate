@@ -14,6 +14,7 @@ footer: {
     text: "我是页眉"  默认 ： "Page 1 of 2"
 }
 ## 水印
+文字和svg可以被复制，canvas会变模糊
 最外层
 {
     waterMark: true
