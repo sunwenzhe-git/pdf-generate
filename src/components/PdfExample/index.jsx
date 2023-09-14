@@ -7,12 +7,13 @@ import {
   View,
 } from "@react-pdf/renderer";
 import React from "react";
-import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-import CustomTable from "../CustomTable";
-import PageHeader from "../PageHeader";
 import QRCode from "../QRCode";
+import Watermark from "../WaterMark";
+import CustomTable from "../CustomTable";
+import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
+import PageHeader from "../PageHeader";
 
-const watermarkText = "  Watermark  "; // 水印文字
+const watermarkText = "WatermarkWatermark"; // 水印文字
 
 Font.register({ family: "pingFang", src: PingFangFont });
 
@@ -25,6 +26,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     display: "flex",
     transform: `rotate(45deg)`,
+  },
+  document: {
+    userSelect: "none",
   },
   watermarkPadding: {
     opacity: 0.1,
