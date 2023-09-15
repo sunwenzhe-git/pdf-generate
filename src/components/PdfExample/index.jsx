@@ -88,74 +88,123 @@ const styles = StyleSheet.create({
 
 function PdfExample() {
   const qrCodeData = "https://example.com";
-  const tableData = [
-    [
-      { title: "CDCC DM & HT Management Optometry", isBold: true, col: "1" },
+  const config = {
+    watermark: {
+      // can config style
+      text: "ssssssss",
+    },
+    content: [
       {
-        title: "HKIC No",
-        value: "s230024(0)",
-        isBold: true,
-        col: "2",
-        titleWidth: 60,
+        container: "table",
+        dataSource: [
+          [
+            {
+              container: "title",
+              title: "CDCC DM & HT Management Optometry",
+              type: "h3", // 默认最小的
+              textAlign: "center", // 默认left
+            },
+            {
+              container: "inputText",
+              titleBold: true,
+              dataSource: [
+                {
+                  label: "HKIC No",
+                  value: "s230024(0)",
+                },
+                {
+                  label: "Name",
+                  value:
+                    "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
+                },
+                {
+                  label: "DOB",
+                  value: "01-Jan-1960",
+                },
+                {
+                  label: "Age",
+                  value: "63",
+                  unit: "years",
+                },
+                {
+                  label: "Sex",
+                  value: "Male",
+                },
+              ],
+            },
+          ],
+          [
+            {
+              container: "inputText",
+              title: "Consultation Summary",
+              dataSource: [
+                {
+                  label: "Prof Service",
+                  value: "Optomertry Service",
+                },
+                {
+                  label: "Programme",
+                  value: "Chonic Disease Co-Care Pilot Scheme",
+                },
+                {
+                  label: "Create Centre",
+                  value:
+                    "VHC4 HOSPITALmkmkmkmkmkmkmkmkmmkmkmkmkmmlkdsdsppoeiwoeijijioqjodioeiie",
+                },
+                {
+                  label: "Create by",
+                  value: "Doctor TASHSOP, DOCTOR001",
+                },
+              ],
+            },
+          ],
+          [
+            {
+              container: [
+                {
+                  container: "inputText",
+                  dataSource: [
+                    {
+                      label: "Consultation Date",
+                      value: "07-Sep-2023",
+                    },
+                    {
+                      label: "Consultation Type",
+                      value: "F to F Consultation",
+                    },
+                  ],
+                },
+                {
+                  container: "inputText",
+                  title: "Optometry Assessment",
+                  col: 2, // 默认1
+                  colTitle: ["Right Eye", "Left Eye"],
+                  dataSource: [
+                    {
+                      label: "Visual Acutiy",
+                      value: ["07-Sep-2023", "07-Sep-2023"],
+                    },
+                    {
+                      label: "Consultation Type",
+                      value: ["F to F Consultation"],
+                    },
+                  ],
+                },
+                {
+                  container: "text",
+                  dataSource: "xxxxxxxxxxxxxx",
+                },
+              ],
+            },
+          ],
+        ],
       },
-      {
-        title: "Name",
-        value: "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
-        isBold: true,
-        col: "2",
-        titleWidth: 60,
-      },
-      {
-        title: "DOB",
-        value: "01-Jan-1960",
-        isBold: true,
-        col: "2",
-        titleWidth: 60,
-      },
-      {
-        title: "Age",
-        value: "63",
-        unit: "years",
-        isBold: true,
-        col: "2",
-        titleWidth: 60,
-      },
-      { title: "Male", value: "Male", isBold: true, col: "2", titleWidth: 60 },
     ],
-    [
-      { title: "Consultation Summary", value: "", isBold: true },
-      { title: "Prof Service", value: "Optomertry Service", titleWidth: 100 },
-      {
-        title: "Programme",
-        value: "Chonic Disease Co-Care Pilot Scheme",
-        titleWidth: 100,
-      },
-      {
-        title: "Create Centre",
-        value:
-          "VHC4 HOSPITALmkmkmkmkmkmkmkmkmmkmkmkmkmmlkdsdsppoeiwoeijijioqjodioeiie",
-        titleWidth: 100,
-      },
-      {
-        title: "Create by",
-        value: "Doctor TASHSOP, DOCTOR001",
-        titleWidth: 100,
-      },
-    ],
-  ];
+  };
   return (
     <Document>
       <Page style={styles.body}>
-        <View style={styles.watermarkText} fixed>
-          <Text>
-            {Array.from({ length: 1000 }, (_, index) => index).map((k) => (
-              <Text key={k} style={styles.watermarkPadding}>
-                {watermarkText}
-              </Text>
-            ))}
-          </Text>
-        </View>
-
+        <Watermark text={watermarkText} />
         <PageHeader />
         <CustomTable data={tableData} />
 
@@ -235,7 +284,7 @@ function PdfExample() {
           que era verdad toda aquella máquina de aquellas soñadas invenciones
           que leía, que para él no había otra historia más cierta en el mundo.
         </Text>
-        <Text style={styles.subtitle} break>
+        <Text style={styles.subtitle}>
           Capítulo II: Que trata de la primera salida que de su tierra hizo el
           ingenioso Don Quijote
         </Text>

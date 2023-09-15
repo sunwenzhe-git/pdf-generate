@@ -52,7 +52,7 @@ function Watermark({ text }) {
   const style = styles(text.length, 15);
   return (
     <View style={style.watermarkText} fixed>
-      {Array.from({ length: 100 }, (_, index) => index).map((k) => (
+      {Array.from({ length: 200 }, (_, index) => index).map((k) => (
         <Image key={k} src={imageSrc} style={style.image}></Image>
       ))}
     </View>
