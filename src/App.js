@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from "react";
 import { useRequest } from "ahooks";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFViewer from "./components/PDFViewer";
-import PdfExample from "./components/PdfExample";
+import PDFContainer from "./components/PDFContainer";
 import { pdf1, pdf2 } from "./utils";
 
 function getData() {
@@ -15,7 +15,7 @@ function getData() {
 const App = () => {
   const iframeRef = useRef(null);
   const { data, error, loading } = useRequest(getData);
-  const PDF = useMemo(() => data && <PdfExample config={data} />, [data]);
+  const PDF = useMemo(() => data && <PDFContainer config={data} />, [data]);
 
   if (error) {
     return <div>failed to load</div>;
