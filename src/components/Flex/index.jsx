@@ -1,54 +1,6 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
 
-const x = {
-  watermark: {
-    text: "xxxxxxxx",
-    textAlign: "center",
-    underline: true,
-  },
-  content: [
-    {
-      container: "Flex",
-      col: 3,
-      dataSource: [
-        null,
-        {
-          container: [
-            {
-              container: "title",
-              type: "h1",
-              title: "慢性疾病共同治理先导计划",
-            },
-            {
-              container: "title",
-              type: "h2",
-              title: "Chronic Disease Co-Care Pilot Schema",
-            },
-            {
-              container: "title",
-              type: "h2",
-              title: "Consultation Letter",
-              style: { paddingTop: 20 },
-            },
-          ],
-        },
-        {
-          container: [
-            {
-              container: "qrCode",
-              title: "慢性疾病共同治理先导计划",
-            },
-            {
-              container: "inputText",
-              title: "Reference No",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

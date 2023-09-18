@@ -8,8 +8,8 @@ import {
 } from "@react-pdf/renderer";
 import React from "react";
 import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-import CustomTable from "../CustomTable";
 import PageHeader from "../PageHeader";
+import PdfContent from "../PDFContent";
 import QRCode from "../QRCode";
 import Watermark from "../WaterMark";
 
@@ -94,27 +94,7 @@ function PDFContainer(props) {
       <Page style={styles.body}>
         <Watermark text={config?.watermark?.text} />
         <PageHeader />
-        <>
-          {config.content?.map((k, index) => {
-            if (k.container === "table") {
-              return (
-                <CustomTable
-                  key={`${k.container}_index`}
-                  data={k?.dataSource}
-                />
-              );
-            }
-            if (k.container === "text") {
-              return (
-                <Text key={`${k.container}_index`} style={styles.text}>
-                  {k.dataSource}
-                </Text>
-              );
-            }
-            return <></>;
-          })}
-        </>
-
+        <PdfContent data={config.content} />
         <View style={styles.image}>
           <QRCode value={qrCodeData} size={150} />
         </View>
