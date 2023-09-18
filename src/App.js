@@ -1,7 +1,6 @@
 import React, { useRef, useMemo } from "react";
 import { useRequest } from "ahooks";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import PDFViewer from "./components/PDFViewer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDFContainer from "./components/PDFContainer";
 import { pdf1, pdf2 } from "./utils";
 
