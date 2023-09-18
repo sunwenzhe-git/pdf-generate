@@ -7,14 +7,60 @@ import {
   View,
 } from "@react-pdf/renderer";
 import React from "react";
-import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-import CustomTable from "../CustomTable";
-import PageHeader from "../PageHeader";
 import QRCode from "../QRCode";
 import Watermark from "../WaterMark";
+import CustomTable from "../CustomTable";
+import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
+import PageHeader from "../PageHeader";
 
-Font.register({ family: "pingFang", src: PingFangFont });
-
+const config = {
+  watermark: {
+    text: "xxxxxxxx",
+    textAlign: "center",
+    underline: true,
+  },
+  content: [
+    {
+      container: "Flex",
+      col: 3,
+      dataSource: [
+        null,
+        {
+          container: [
+            {
+              container: "title",
+              type: "h1",
+              title: "慢性疾病共同治理先导计划",
+            },
+            {
+              container: "title",
+              type: "h2",
+              title: "Chronic Disease Co-Care Pilot Schema",
+            },
+            {
+              container: "title",
+              type: "h2",
+              title: "Consultation Letter",
+              style: { paddingTop: 20 },
+            },
+          ],
+        },
+        {
+          container: [
+            {
+              container: "qrCode",
+              title: "慢性疾病共同治理先导计划",
+            },
+            {
+              container: "inputText",
+              title: "Reference No",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 const styles = StyleSheet.create({
   watermarkText: {
     position: "absolute",
@@ -83,52 +129,12 @@ const styles = StyleSheet.create({
     color: "grey",
   },
 });
-
-function PdfExample(props) {
-  const { config } = props;
-
-  console.log(config, "kkkkkk");
-  const qrCodeData = "https://example.com";
-
+function PdfRender() {
   return (
     <Document>
-      <Page style={styles.body}>
-        <Watermark text={config?.watermark?.text} />
-        <PageHeader />
-        <>
-          {config.content?.map((k, index) => {
-            if (k.container === "table") {
-              return (
-                <CustomTable
-                  key={`${k.container}_index`}
-                  data={k?.dataSource}
-                />
-              );
-            }
-            if (k.container === "text") {
-              return (
-                <Text key={`${k.container}_index`} style={styles.text}>
-                  {k.dataSource}
-                </Text>
-              );
-            }
-            return <></>;
-          })}
-        </>
-
-        <View style={styles.image}>
-          <QRCode value={qrCodeData} size={150} />
-        </View>
-        <Text
-          style={styles.pageNumber}
-          render={({ pageNumber, totalPages }) =>
-            `${pageNumber} / ${totalPages}`
-          }
-          fixed
-        />
-      </Page>
+      <Page style={styles.body}></Page>
     </Document>
   );
 }
 
-export default PdfExample;
+export default PdfRender;
