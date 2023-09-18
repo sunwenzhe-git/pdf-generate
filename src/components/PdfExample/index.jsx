@@ -7,13 +7,11 @@ import {
   View,
 } from "@react-pdf/renderer";
 import React from "react";
+import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
+import CustomTable from "../CustomTable";
+import PageHeader from "../PageHeader";
 import QRCode from "../QRCode";
 import Watermark from "../WaterMark";
-import CustomTable from "../CustomTable";
-import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-import PageHeader from "../PageHeader";
-
-const watermarkText = "WatermarkWatermark"; // 水印文字
 
 Font.register({ family: "pingFang", src: PingFangFont });
 
@@ -91,7 +89,7 @@ function PdfExample() {
   const config = {
     watermark: {
       // can config style
-      text: "ssssssss",
+      text: "WatermarkWatermark",
     },
     content: [
       {
@@ -107,6 +105,7 @@ function PdfExample() {
             {
               container: "inputText",
               titleBold: true,
+              titleWidth: "width_first",
               dataSource: [
                 {
                   label: "HKIC No",
@@ -137,6 +136,7 @@ function PdfExample() {
             {
               container: "inputText",
               title: "Consultation Summary",
+              titleWidth: "width_second",
               dataSource: [
                 {
                   label: "Prof Service",
@@ -163,6 +163,7 @@ function PdfExample() {
               container: [
                 {
                   container: "inputText",
+                  titleWidth: "width_second",
                   dataSource: [
                     {
                       label: "Consultation Date",
@@ -179,34 +180,67 @@ function PdfExample() {
                   title: "Optometry Assessment",
                   col: 2, // 默认1
                   colTitle: ["Right Eye", "Left Eye"],
+                  titleWidth: "width_second",
                   dataSource: [
                     {
                       label: "Visual Acutiy",
-                      value: ["07-Sep-2023", "07-Sep-2023"],
+                      value: ["6/3(without pinhole)", "6/4(with pinhole)"],
                     },
                     {
-                      label: "Consultation Type",
-                      value: ["F to F Consultation"],
+                      label: "",
+                      value: ["6/5(without pinhole)", "6/6(with pinhole)"],
+                    },
+                    {
+                      label: "Retinal phatography done",
+                      value: ["No", "Yes"],
+                    },
+                    {
+                      label: "Diabetic Retinopathy",
+                      value: ["No proliferative", "Mild non-proliferative"],
                     },
                   ],
                 },
                 {
                   container: "text",
-                  dataSource: "xxxxxxxxxxxxxx",
+                  dataSource: "本文件只适用于xxxxxxxxxxxxxx",
                 },
               ],
             },
           ],
         ],
       },
+      {
+        container: "text",
+        dataSource: "这里只是一些文本ccccc",
+      },
     ],
   };
+
   return (
     <Document>
       <Page style={styles.body}>
-        <Watermark text={watermarkText} />
+        <Watermark text={config?.watermark?.text} />
         <PageHeader />
-        <CustomTable data={tableData} />
+        <>
+          {config.content?.map((k, index) => {
+            if (k.container === "table") {
+              return (
+                <CustomTable
+                  key={`${k.container}_index`}
+                  data={k?.dataSource}
+                />
+              );
+            }
+            if (k.container === "text") {
+              return (
+                <Text key={`${k.container}_index`} style={styles.text}>
+                  {k.dataSource}
+                </Text>
+              );
+            }
+            return <></>;
+          })}
+        </>
 
         <View style={styles.image}>
           <QRCode value={qrCodeData} size={150} />
