@@ -1,5 +1,5 @@
+import { Image, StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
-import { Text, StyleSheet, View, Image } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create((length, fontSize) => ({
   watermark: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create((length, fontSize) => ({
     padding: 10,
   },
   image: {
-    marginVertical: 20,
+    marginVertical: 35,
     marginLeft: 10,
     width: (length * (fontSize + 6)) / 2,
     zIndex: 88,

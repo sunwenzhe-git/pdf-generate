@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { usePDF } from "@react-pdf/renderer";
+import { useEffect } from "react";
 
 export const PDFViewer = ({
   title,
@@ -12,12 +12,13 @@ export const PDFViewer = ({
 }) => {
   const [instance, updateInstance] = usePDF();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => updateInstance(children), [children]);
 
   const src = instance.url
     ? `${instance.url}#toolbar=${showToolbar ? 1 : 0}`
     : null;
-  console.log(src, "kkkk");
+
   return (
     <iframe
       src={src}
