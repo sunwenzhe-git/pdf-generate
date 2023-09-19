@@ -6,28 +6,27 @@ import CustomTable from "../CustomTable";
 import { formatIteratorsData } from "../../utils";
 
 function PdfContent({ data }) {
-  console.log(data, "kkkkkkk");
   return (
     <>
-      {formatIteratorsData(data)?.map((k, index) => {
-        if (k.container === "table") {
-          return (
-            <CustomTable key={`${k.container}_index`} data={k?.dataSource} />
-          );
-        }
-        if (k.container === "text") {
-          return <PdfText data={k.dataSource} key={`${k.container}_index`} />;
-        }
-        if (k.container === "qrCode") {
-          return <QRCode value={k.dataSource} size={k.size} />;
-        }
-        if (k.container === "flex") {
-          return <Flex data={k.dataSource} />;
-        }
-        return <></>;
-      })}
+      {formatIteratorsData(data)?.map((k, index) => (
+        <PdfItem data={k} key={index} />
+      ))}
     </>
   );
 }
 
+const PdfItem = ({ data }) => {
+  switch (data.container) {
+    case "table":
+      return <CustomTable data={data?.dataSource} />;
+    case "text":
+      return <PdfText data={data.dataSource} />;
+    case "qrCode":
+      return <QRCode data={data.dataSource} size={data.size} />;
+    case "flex":
+      return <Flex data={data.dataSource} />;
+    default:
+      return <></>;
+  }
+};
 export default PdfContent;

@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
 const Flex = ({ data }) => {
   return (
     <View style={styles.container}>
-      {formatIteratorsData(data).map((item) => {
+      {formatIteratorsData(data).map((item, index) => {
         return (
-          <View style={styles.column}>
+          <View style={styles.column} key={index}>
             {!!item && <PdfContent data={item} />}
           </View>
         );
