@@ -11,7 +11,6 @@ const style = StyleSheet.create((size) => ({
 const QRCode = ({ data, size }) => {
   const styles = style(size);
   const qrCodeDataUrl = qrcode.toDataURL(data.dataSource);
-  console.log(data, "data.describe");
   return (
     <View style={styles.qrCode}>
       <Image src={qrCodeDataUrl} />

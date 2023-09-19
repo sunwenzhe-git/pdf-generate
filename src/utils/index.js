@@ -179,14 +179,12 @@ export const pdf2 = {
           {
             container: "qrCode",
             dataSource: "https://example.com",
-            // title: "慢性疾病共同治理先导计划",
             describe: [
               {
                 container: "inputText",
                 title: "Reference No.:",
                 dataSource: [
                   {
-                    // label: "Reference No",
                     label: "",
                     value: "23830003230000252595",
                   },
@@ -200,13 +198,10 @@ export const pdf2 = {
     },
     {
       container: "title",
-      // type: "h3",
       title: "服務使用者資料",
-      // textAlign: "center",
     },
     {
       container: "inputText",
-      // titleBold: true,
       title: "Participant Particulars",
       titleWidth: "width_second",
       dataSource: [
@@ -243,18 +238,31 @@ export const pdf2 = {
     },
     {
       container: "inputText",
-      title:
-        "Reason for Consultation: For HA designated Medicine & Geriatrics Specialist",
-
-      // titleWidth: "width_second",
-      textDecoration: "underline",
+      titleBold: true,
+      dataSource: [
+        {
+          label: "Reason for Consultation",
+          value: "For HA designated Medicine & Geriatrics Specialist",
+          labelTextDecoration: "underline",
+          valueTextDecoration: "underline",
+          labelBold: true,
+        },
+      ],
+    },
+    { container: "blank" },
+    {
+      container: "inputText",
+      titleWidth: 250,
       dataSource: [
         {
           label: "Thank you for seeing the participant",
           value: "CHAN, TAI MAN 220",
+          valueTextDecoration: "underline",
+          labelBold: true,
         },
       ],
     },
+    { container: "blank" },
     {
       container: "text",
       dataSource:

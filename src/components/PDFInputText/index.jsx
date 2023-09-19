@@ -19,6 +19,7 @@ function PdfInputText({ data }) {
                   k === 0
                     ? WIDTH_SET[data?.titleWidth] || data?.titleWidth
                     : undefined,
+                textDecoration: data?.textDecoration,
                 flex: 1,
               }}
             >
@@ -35,6 +36,7 @@ function PdfInputText({ data }) {
               style={{
                 fontFamily: data.titleBold ? "Noto Sans" : "pingFang",
                 width: WIDTH_SET[data?.titleWidth] || data?.titleWidth,
+                textDecoration: k?.labelTextDecoration,
               }}
             >
               {k?.label}
@@ -58,7 +60,14 @@ function PdfInputText({ data }) {
                 ))}
               </>
             ) : (
-              <Text style={{ flex: 1, top: data.titleBold ? "-2pt" : "" }}>
+              <Text
+                style={{
+                  flex: 1,
+                  top: data.titleBold && !k.labelBold ? "-2pt" : "",
+                  textDecoration: k?.valueTextDecoration,
+                  fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
+                }}
+              >
                 {k?.value} {k?.unit}
               </Text>
             )}

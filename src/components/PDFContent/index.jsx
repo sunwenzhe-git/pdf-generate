@@ -1,3 +1,4 @@
+import { Text } from "@react-pdf/renderer";
 import React from "react";
 import { formatIteratorsData } from "../../utils";
 import CustomTable from "../CustomTable";
@@ -31,6 +32,8 @@ const PdfItem = ({ data }) => {
       return <PdfTitle data={data} />;
     case "inputText":
       return <PdfInputText data={data} />;
+    case "blank":
+      return <Text> </Text>;
     default:
       return <></>;
   }
