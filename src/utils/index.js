@@ -121,7 +121,10 @@ export const pdf1 = {
                   },
                   {
                     label: "Diabetic Retinopathy",
-                    value: ["No proliferative", "Mild non-proliferative"],
+                    value: [
+                      "No proliferative-ccccclllllkkkkkkoooooooopppppiiiiuuu",
+                      "Mild non-proliferative",
+                    ],
                   },
                 ],
               },
@@ -154,19 +157,19 @@ export const pdf2 = {
         [
           {
             container: "title",
-            type: "h2",
+            type: "h3",
             title: "慢性疾病共同治理先导计划",
             textAlign: "center",
           },
           {
             container: "title",
-            type: "h3",
+            type: "h4",
             title: "Chronic Disease Co-Care Pilot Schema",
             textAlign: "center",
           },
           {
             container: "title",
-            type: "h3",
+            type: "h4",
             title: "Consultation Letter",
             textAlign: "center",
             style: { paddingTop: 20 },
@@ -176,22 +179,86 @@ export const pdf2 = {
           {
             container: "qrCode",
             dataSource: "https://example.com",
-            title: "慢性疾病共同治理先导计划",
+            // title: "慢性疾病共同治理先导计划",
             describe: [
               {
                 container: "inputText",
+                title: "Reference No.:",
                 dataSource: [
                   {
-                    label: "Reference No",
-                    value: 20344444444444444444444,
+                    // label: "Reference No",
+                    label: "",
+                    value: "23830003230000252595",
                   },
                 ],
               },
             ],
-            size: 150,
+            size: 100,
           },
         ],
       ],
+    },
+    {
+      container: "title",
+      // type: "h3",
+      title: "服務使用者資料",
+      // textAlign: "center",
+    },
+    {
+      container: "inputText",
+      // titleBold: true,
+      title: "Participant Particulars",
+      titleWidth: "width_second",
+      dataSource: [
+        { label: "姓名", value: "陳大文二二零" },
+        {
+          label: "Name",
+          value: "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
+        },
+        {
+          label: "香港身分證HKIC No.",
+          value: "s230024(0)",
+        },
+        {
+          label: "性別Sex",
+          value: "男M",
+        },
+        {
+          label: "地區District",
+          value: "香港管理區HA",
+        },
+        {
+          label: "",
+          value: "HA Hospital",
+        },
+        {
+          label: "",
+          value: "Cheshire Home, Chung Hom Kok",
+        },
+        {
+          label: "",
+          value: "Cc: DHC/DHCE",
+        },
+      ],
+    },
+    {
+      container: "inputText",
+      title:
+        "Reason for Consultation: For HA designated Medicine & Geriatrics Specialist",
+
+      // titleWidth: "width_second",
+      textDecoration: "underline",
+      dataSource: [
+        {
+          label: "Thank you for seeing the participant",
+          value: "CHAN, TAI MAN 220",
+        },
+      ],
+    },
+    {
+      container: "text",
+      dataSource:
+        "Participant has enrolled in CDCC Pilot Scheme and was diagnosed with Diabetes mellitus (DM), Hypertension (HT)",
     },
   ],
 };

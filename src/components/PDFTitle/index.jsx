@@ -2,7 +2,6 @@ import { Text } from "@react-pdf/renderer";
 import React from "react";
 import { FONTSIZE_SET } from "../CustomTable/utils";
 
-// TODO 汉字的粗体样式。。。 'arial'不识别汉字。fontWeight属性不起作用
 function PdfTitle({ data }) {
   return (
     <Text
@@ -10,7 +9,7 @@ function PdfTitle({ data }) {
         fontFamily: "Noto Sans",
         textAlign: data?.textAlign,
         fontSize: FONTSIZE_SET[data?.type],
-        // fontWeight: 800,
+        textDecoration: data?.textDecoration,
       }}
     >
       {data?.title}

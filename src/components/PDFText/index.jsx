@@ -4,7 +4,7 @@ import { FONTSIZE_SET } from "../CustomTable/utils";
 
 const styles = StyleSheet.create({
   text: {
-    margin: 12,
+    // margin: 12,
     fontSize: FONTSIZE_SET.h4,
     textAlign: "justify",
   },

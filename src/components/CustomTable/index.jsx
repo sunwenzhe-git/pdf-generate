@@ -2,14 +2,12 @@ import { StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
 import { formatIteratorsData } from "../../utils";
 import PdfContent from "../PDFContent";
-import { FONTSIZE_SET } from "./utils";
 
 const styles = StyleSheet.create({
   table: {
     width: "100%",
     borderTop: "1px solid black",
     borderLeft: "1px solid black",
-    fontSize: FONTSIZE_SET.h4,
   },
   tableRow: { flexDirection: "row" },
   tableCell: {

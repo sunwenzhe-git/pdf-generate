@@ -2,10 +2,9 @@ import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
 import ArialFont from "../../assets/font/Arial.ttf";
 import MingLiuFont from "../../assets/font/MingLiU.ttf";
-import NotosanBoldFont from "../../assets/font/Notosan-Bold.otf";
-import NotosanFont from "../../assets/font/Notosan.otf";
+import NotosanZhFont from "../../assets/font/Notosan-zh.otf";
 import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-
+import { FONTSIZE_SET } from "../CustomTable/utils";
 import PdfContent from "../PDFContent";
 import { PageFooter, PageHeader } from "../PageComponent";
 import Watermark from "../WaterMark";
@@ -15,7 +14,7 @@ Font.register({ family: "arial", src: ArialFont });
 Font.register({ family: "mingLiu", src: MingLiuFont });
 Font.register({
   family: "Noto Sans",
-  fonts: [{ src: NotosanFont }, { src: NotosanBoldFont, fontWeight: "bold" }],
+  src: NotosanZhFont,
 });
 
 const styles = StyleSheet.create({
@@ -24,6 +23,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35,
     position: "relative",
     fontFamily: "pingFang",
+    fontSize: FONTSIZE_SET.h4,
   },
 });
 

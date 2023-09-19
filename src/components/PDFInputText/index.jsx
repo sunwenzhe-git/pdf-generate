@@ -14,8 +14,11 @@ function PdfInputText({ data }) {
             <Text
               key={k}
               style={{
-                fontFamily: "arial",
-                marginLeft: k === 0 ? WIDTH_SET[data?.titleWidth] : undefined,
+                fontFamily: "Noto Sans",
+                marginLeft:
+                  k === 0
+                    ? WIDTH_SET[data?.titleWidth] || data?.titleWidth
+                    : undefined,
                 flex: 1,
               }}
             >
@@ -30,8 +33,8 @@ function PdfInputText({ data }) {
           <View key={k.value} style={{ display: "flex", flexDirection: "row" }}>
             <Text
               style={{
-                fontFamily: data.titleBold ? "arial" : "pingFang",
-                width: WIDTH_SET[data?.titleWidth],
+                fontFamily: data.titleBold ? "Noto Sans" : "pingFang",
+                width: WIDTH_SET[data?.titleWidth] || data?.titleWidth,
               }}
             >
               {k?.label}
