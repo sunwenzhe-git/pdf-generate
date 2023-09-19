@@ -177,11 +177,18 @@ export const pdf2 = {
             container: "qrCode",
             dataSource: "https://example.com",
             title: "慢性疾病共同治理先导计划",
+            describe: [
+              {
+                container: "inputText",
+                dataSource: [
+                  {
+                    label: "Reference No",
+                    value: 20344444444444444444444,
+                  },
+                ],
+              },
+            ],
             size: 150,
-          },
-          {
-            container: "inputText",
-            title: "Reference No",
           },
         ],
       ],
