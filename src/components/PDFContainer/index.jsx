@@ -1,12 +1,16 @@
 import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
+import ArialFont from "../../assets/font/Arial.ttf";
+import MingLiuFont from "../../assets/font/MingLiU.ttf";
 import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
-import { PageHeader, PageFooter } from "../PageComponent";
+
 import PdfContent from "../PDFContent";
-import QRCode from "../QRCode";
+import { PageFooter, PageHeader } from "../PageComponent";
 import Watermark from "../WaterMark";
 
 Font.register({ family: "pingFang", src: PingFangFont });
+Font.register({ family: "arial", src: ArialFont });
+Font.register({ family: "mingliu", src: MingLiuFont });
 
 const styles = StyleSheet.create({
   body: {

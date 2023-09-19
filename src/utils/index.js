@@ -154,26 +154,30 @@ export const pdf2 = {
         [
           {
             container: "title",
-            type: "h1",
+            type: "h2",
             title: "慢性疾病共同治理先导计划",
+            textAlign: "center",
           },
           {
             container: "title",
-            type: "h2",
+            type: "h3",
             title: "Chronic Disease Co-Care Pilot Schema",
+            textAlign: "center",
           },
           {
             container: "title",
-            type: "h2",
+            type: "h3",
             title: "Consultation Letter",
+            textAlign: "center",
             style: { paddingTop: 20 },
           },
         ],
         [
           {
             container: "qrCode",
-            dataSource: "",
+            dataSource: "https://example.com",
             title: "慢性疾病共同治理先导计划",
+            size: 150,
           },
           {
             container: "inputText",

@@ -1,8 +1,8 @@
-import React, { useRef, useMemo } from "react";
-import { useRequest } from "ahooks";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { useRequest } from "ahooks";
+import React, { useMemo, useRef } from "react";
 import PDFContainer from "./components/PDFContainer";
-import { pdf1, pdf2 } from "./utils";
+import { pdf2 } from "./utils";
 
 function getData() {
   return new Promise((resolve) => {

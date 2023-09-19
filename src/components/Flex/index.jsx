@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
-import PdfContent from "../PDFContent";
 import { formatIteratorsData } from "../../utils";
+import PdfContent from "../PDFContent";
 
 const styles = StyleSheet.create({
   container: {

@@ -1,9 +1,11 @@
 import React from "react";
-import Flex from "../Flex";
-import QRCode from "../QRCode";
-import PdfText from "../PDFText";
-import CustomTable from "../CustomTable";
 import { formatIteratorsData } from "../../utils";
+import CustomTable from "../CustomTable";
+import Flex from "../Flex";
+import PdfInputText from "../PDFInputText";
+import PdfText from "../PDFText";
+import PdfTitle from "../PDFTitle";
+import QRCode from "../QRCode";
 
 function PdfContent({ data }) {
   return (
@@ -25,6 +27,10 @@ const PdfItem = ({ data }) => {
       return <QRCode data={data.dataSource} size={data.size} />;
     case "flex":
       return <Flex data={data.dataSource} />;
+    case "title":
+      return <PdfTitle data={data} />;
+    case "inputText":
+      return <PdfInputText data={data} />;
     default:
       return <></>;
   }

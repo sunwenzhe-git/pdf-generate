@@ -1,10 +1,11 @@
+import { StyleSheet, Text } from "@react-pdf/renderer";
 import React from "react";
-import { Text, StyleSheet } from "@react-pdf/renderer";
+import { FONTSIZE_SET } from "../CustomTable/utils";
 
 const styles = StyleSheet.create({
   text: {
     margin: 12,
-    fontSize: 14,
+    fontSize: FONTSIZE_SET.h4,
     textAlign: "justify",
   },
 });
