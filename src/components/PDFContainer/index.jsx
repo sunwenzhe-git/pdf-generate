@@ -2,6 +2,8 @@ import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
 import ArialFont from "../../assets/font/Arial.ttf";
 import MingLiuFont from "../../assets/font/MingLiU.ttf";
+import NotosanBoldFont from "../../assets/font/Notosan-Bold.otf";
+import NotosanFont from "../../assets/font/Notosan.otf";
 import PingFangFont from "../../assets/font/PingFangSC-Regular.ttf";
 
 import PdfContent from "../PDFContent";
@@ -10,7 +12,11 @@ import Watermark from "../WaterMark";
 
 Font.register({ family: "pingFang", src: PingFangFont });
 Font.register({ family: "arial", src: ArialFont });
-Font.register({ family: "mingliu", src: MingLiuFont });
+Font.register({ family: "mingLiu", src: MingLiuFont });
+Font.register({
+  family: "Noto Sans",
+  fonts: [{ src: NotosanFont }, { src: NotosanBoldFont, fontWeight: "bold" }],
+});
 
 const styles = StyleSheet.create({
   body: {

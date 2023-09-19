@@ -7,13 +7,15 @@ import { FONTSIZE_SET } from "./utils";
 const styles = StyleSheet.create({
   table: {
     width: "100%",
-    border: "1px solid black",
+    borderTop: "1px solid black",
+    borderLeft: "1px solid black",
     fontSize: FONTSIZE_SET.h4,
   },
   tableRow: { flexDirection: "row" },
   tableCell: {
     flex: 1,
-    border: "1px solid black",
+    borderBottom: "1px solid black",
+    borderRight: "1px solid black",
     padding: 5,
   },
 });

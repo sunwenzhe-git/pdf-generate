@@ -7,9 +7,10 @@ function PdfTitle({ data }) {
   return (
     <Text
       style={{
-        fontFamily: "arial",
+        fontFamily: "Noto Sans",
         textAlign: data?.textAlign,
         fontSize: FONTSIZE_SET[data?.type],
+        // fontWeight: 800,
       }}
     >
       {data?.title}

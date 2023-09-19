@@ -2,12 +2,12 @@ import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { useRequest } from "ahooks";
 import React, { useMemo, useRef } from "react";
 import PDFContainer from "./components/PDFContainer";
-import { pdf2 } from "./utils";
+import { pdf1 } from "./utils";
 
 function getData() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(pdf2);
+      resolve(pdf1);
     }, 1000);
   });
 }

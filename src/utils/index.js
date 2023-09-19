@@ -23,7 +23,7 @@ export const pdf1 = {
         [
           {
             container: "title",
-            title: "CDCC DM & HT Management Optometry",
+            title: "中文CDCC DM & HT Management Optometry",
             type: "h3", // 默认最小的
             textAlign: "center", // 默认left
           },
