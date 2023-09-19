@@ -28,9 +28,9 @@ function PDFContainer(props) {
     <Document>
       <Page style={styles.body}>
         <Watermark text={config?.watermark?.text} />
-        <PageHeader />
+        <PageHeader config={config?.pageHeader} />
         <PdfContent data={config.content} />
-        <PageFooter />
+        <PageFooter config={config?.pageFooter} />
       </Page>
     </Document>
   );

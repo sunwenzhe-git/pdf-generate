@@ -27,7 +27,8 @@ const stylesFunc = ({ textAlign, textDecoration }) =>
  * @param text 所展示的具体文本
  * @returns
  */
-const PageHeader = ({ textAlign = "left", textDecoration = "unset", text }) => {
+const PageHeader = ({ config = {} }) => {
+  const { textAlign = "left", textDecoration = "unset", text } = config;
   const styles = stylesFunc({ textAlign, textDecoration });
 
   return (
@@ -40,7 +41,8 @@ const PageHeader = ({ textAlign = "left", textDecoration = "unset", text }) => {
     />
   );
 };
-const PageFooter = ({ textAlign = "left", textDecoration = "unset", text }) => {
+const PageFooter = ({ config = {} }) => {
+  const { textAlign = "left", textDecoration = "unset", text } = config;
   const styles = stylesFunc({ textAlign, textDecoration });
 
   return (
