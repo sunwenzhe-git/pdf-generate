@@ -24,7 +24,7 @@ const PdfItem = ({ data }) => {
     case "text":
       return <PdfText data={data.dataSource} />;
     case "qrCode":
-      return <QRCode data={data.dataSource} size={data.size} />;
+      return <QRCode data={data} size={data.size} />;
     case "flex":
       return <Flex data={data.dataSource} />;
     case "title":
