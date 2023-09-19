@@ -10,6 +10,15 @@ const stylesFunc = ({ textAlign, textDecoration }) =>
       textAlign: textAlign,
       textDecoration: textDecoration,
     },
+    pageFooter: {
+      position: "absolute",
+      fontSize: 12,
+      bottom: 30,
+      left: 0,
+      right: 0,
+      textAlign: "center",
+      color: "grey",
+    },
   });
 
 /**
@@ -31,5 +40,17 @@ const PageHeader = ({ textAlign = "left", textDecoration = "unset", text }) => {
     />
   );
 };
+const PageFooter = ({ textAlign = "left", textDecoration = "unset", text }) => {
+  const styles = stylesFunc({ textAlign, textDecoration });
 
-export default PageHeader;
+  return (
+    <Text
+      style={styles.pageFooter}
+      render={({ pageNumber, totalPages }) =>
+        text ?? `${pageNumber} / ${totalPages}`
+      }
+      fixed
+    />
+  );
+};
+export { PageHeader, PageFooter };

@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
-import React from "react";
+import PdfContent from "../PDFContent";
+import { formatIteratorsData } from "../../utils";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,9 +16,13 @@ const styles = StyleSheet.create({
 const Flex = ({ data }) => {
   return (
     <View style={styles.container}>
-      <View style={[styles.column, styles.column1]}>{/* 第一列的内容 */}</View>
-      <View style={[styles.column, styles.column2]}>{/* 第二列的内容 */}</View>
-      <View style={[styles.column, styles.column3]}>{/* 第三列的内容 */}</View>
+      {formatIteratorsData(data).map((item) => {
+        return (
+          <View style={styles.column}>
+            {!!item && <PdfContent data={item} />}
+          </View>
+        );
+      })}
     </View>
   );
 };

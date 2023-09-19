@@ -7,7 +7,7 @@ import { pdf1, pdf2 } from "./utils";
 function getData() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(pdf2);
+      resolve(pdf1);
     }, 1000);
   });
 }

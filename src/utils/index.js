@@ -149,7 +149,7 @@ export const pdf2 = {
   },
   content: [
     {
-      container: "Flex",
+      container: "flex",
       col: 3,
       dataSource: [
         null,
@@ -177,6 +177,7 @@ export const pdf2 = {
           container: [
             {
               container: "qrCode",
+              dataSource: "",
               title: "慢性疾病共同治理先导计划",
             },
             {

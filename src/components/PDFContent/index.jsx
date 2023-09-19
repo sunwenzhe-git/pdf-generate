@@ -1,11 +1,15 @@
 import React from "react";
-import CustomTable from "../CustomTable";
+import Flex from "../Flex";
+import QRCode from "../QRCode";
 import PdfText from "../PDFText";
+import CustomTable from "../CustomTable";
+import { formatIteratorsData } from "../../utils";
 
 function PdfContent({ data }) {
+  console.log(data, "kkkkkkk");
   return (
     <>
-      {data?.map((k, index) => {
+      {formatIteratorsData(data)?.map((k, index) => {
         if (k.container === "table") {
           return (
             <CustomTable key={`${k.container}_index`} data={k?.dataSource} />
@@ -13,6 +17,12 @@ function PdfContent({ data }) {
         }
         if (k.container === "text") {
           return <PdfText data={k.dataSource} key={`${k.container}_index`} />;
+        }
+        if (k.container === "qrCode") {
+          return <QRCode value={k.dataSource} size={k.size} />;
+        }
+        if (k.container === "flex") {
+          return <Flex data={k.dataSource} />;
         }
         return <></>;
       })}
