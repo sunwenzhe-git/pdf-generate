@@ -37,7 +37,7 @@ function textToImage(text, fontSize) {
   let tLength = text.length; //获取文本个数
   let canvas = document.createElement("canvas"); //创建画布
   canvas.width = (tLength * (fontSize + 6)) / 2; //设置画布宽度，15为字体大小
-  canvas.height = fontSize + 6;
+  canvas.height = fontSize + 12;
   let context = canvas.getContext("2d"); //获取绘图环境
   context.textAlign = "center"; //设置居中
   context.fillStyle = "#fff"; //设置白色画笔

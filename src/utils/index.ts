@@ -1,9 +1,10 @@
+import { Schema } from "./schema";
 /**
  * @description:
  * @param {*} arr
  * @return {*}
  */
-export function formatIteratorsData(arr) {
+export function formatIteratorsData(arr: any) {
   if (Array.isArray(arr) && arr.length) {
     return arr;
   } else {
@@ -11,7 +12,7 @@ export function formatIteratorsData(arr) {
   }
 }
 
-export const pdf1 = {
+export const pdf1: Schema = {
   watermark: {
     // can config style
     text: "WatermarkWatermark",
@@ -144,14 +145,17 @@ export const pdf1 = {
   ],
 };
 
-export const pdf2 = {
+export const pdf2: Schema = {
   watermark: {
-    text: "xxxxxxxx",
+    text: "5491143518",
+  },
+  pdfHeader: {
+    textAlign: "center",
+    // textDecoration: ""
   },
   content: [
     {
       container: "flex",
-      col: 3,
       dataSource: [
         null,
         [
