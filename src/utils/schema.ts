@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 
 export interface Schema {
   watermark: {
+    // TODO can config style
     text: string;
   };
   __INIT_PDF_CONFIG__?: Config;
@@ -10,21 +11,29 @@ export interface Schema {
   content: Content[];
 }
 interface Config {
-
+  h1?: number;
+  h2?: number;
+  h3?: number;
+  h4?: number;
+  h5?: number;
+  h6?: number;
+  width_first?: number;
+  width_second?: number;
 }
 interface InputText {
   container: "inputText";
   title?: string;
   titleBold?: boolean;
   col?: number;
+  style?: CSSProperties;
   colTitle?: string[];
   titleWidth?: string | number;
   dataSource: Array<{
     label: string;
     value: string | string[];
     unit?: string;
-    labelTextDecoration?: string;
-    valueTextDecoration?: string;
+    labelTextDecoration?: CSSProperties["textDecoration"];
+    valueTextDecoration?: CSSProperties["textDecoration"];
     labelBold?: boolean;
     labelColon?: boolean; // true
   }>;
@@ -32,7 +41,7 @@ interface InputText {
 interface QRCode {
   container: "qrCode";
   dataSource: string;
-  describe: Array<InputText>;
+  describe: Array<Content>; // TODO InputText
   size: number;
 }
 interface Table {
@@ -51,13 +60,14 @@ interface Flex {
 interface Title {
   container: "title";
   title: string;
-  type?: string;
+  type?: string;  // h4
   textAlign?: string;
   style?: CSSProperties;
 }
 interface Text {
   container: "text" | "blank";
   dataSource?: string;
+  style?: CSSProperties;
 }
 interface ContentArr {
   container: Content[];

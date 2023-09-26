@@ -3,7 +3,7 @@ import PdfTitle from "../Title";
 
 function PdfInputText({ data }) {
   return (
-    <>
+    <View style={{ ...data.style }}>
       {!!data?.title && <PdfTitle data={data} />}
       {data?.col && (
         <View style={{ display: "flex", flexDirection: "row" }}>
@@ -48,7 +48,6 @@ function PdfInputText({ data }) {
                 {k?.label}
                 {k?.label && k?.value && labelColon ? ":" : ""}
               </Text>
-
               {k?.value instanceof Array ? (
                 <>
                   {Array.from(
@@ -61,7 +60,7 @@ function PdfInputText({ data }) {
                         flex: 1,
                       }}
                     >
-                      {k?.value?.[vItem]}
+                      {` ${k?.value?.[vItem]}`}
                     </Text>
                   ))}
                 </>
@@ -75,13 +74,13 @@ function PdfInputText({ data }) {
                     fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
                   }}
                 >
-                  {k?.value} {k?.unit}
+                  {` ${k?.value} ${k?.unit ?? ""}`}
                 </Text>
               )}
             </View>
           );
         })}
-    </>
+    </View>
   );
 }
 

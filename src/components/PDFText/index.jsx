@@ -7,8 +7,14 @@ const styles = StyleSheet.create({
 });
 function PdfText({ data }) {
   return (
-    <Text style={{ ...styles.text, fontSize: window.__INIT_PDF_CONFIG__.h5 }}>
-      {data}
+    <Text
+      style={{
+        ...styles.text,
+        fontSize: window.__INIT_PDF_CONFIG__.h5,
+        ...data?.style,
+      }}
+    >
+      {data.dataSource}
     </Text>
   );
 }

@@ -23,7 +23,7 @@ const PdfItem = ({ data }) => {
     case "table":
       return <CustomTable data={data?.dataSource} />;
     case "text":
-      return <PdfText data={data.dataSource} />;
+      return <PdfText data={data} />;
     case "qrCode":
       return <QRCode data={data} size={data.size} />;
     case "flex":

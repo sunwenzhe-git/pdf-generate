@@ -14,7 +14,6 @@ export function formatIteratorsData(arr: any) {
 
 export const pdf1: Schema = {
   watermark: {
-    // TODO can config style
     text: "WatermarkWatermark",
   },
   content: [
@@ -249,8 +248,24 @@ export const pdf2: Schema = {
     },
     { container: "blank" },
     {
+      container: "text",
+      style: { paddingLeft: 50 },
+      dataSource: "HA Hospital",
+    },
+    {
+      container: "text",
+      style: { paddingLeft: 50 },
+      dataSource: "Cheshire Home, Chung Hom Kok",
+    },
+    {
+      container: "text",
+      style: { paddingLeft: 50 },
+      dataSource: "Cc: DHC / DHCE",
+    },
+    {
       container: "inputText",
       titleBold: true,
+      style: { marginTop: 3 },
       dataSource: [
         {
           label: "Reason for Consultation",
