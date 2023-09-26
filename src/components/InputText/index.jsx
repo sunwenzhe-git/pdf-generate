@@ -14,7 +14,8 @@ function PdfInputText({ data }) {
                 fontFamily: "Noto Sans",
                 marginLeft:
                   k === 0
-                    ? window.__[data?.titleWidth] || data?.titleWidth
+                    ? window.__INIT_PDF_CONFIG__[data?.titleWidth] ||
+                      data?.titleWidth
                     : undefined,
                 textDecoration: data?.textDecoration,
                 flex: 1,

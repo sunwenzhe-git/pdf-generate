@@ -16,7 +16,7 @@ const INIT_PDF_CONFIG = {
 function getData() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const data = pdf2;
+      const data = pdf1;
       window.__INIT_PDF_CONFIG__ = data?.__INIT_PDF_CONFIG__
         ? data.__INIT_PDF_CONFIG__
         : INIT_PDF_CONFIG;
