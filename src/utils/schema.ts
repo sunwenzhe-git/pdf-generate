@@ -4,11 +4,14 @@ export interface Schema {
   watermark: {
     text: string;
   };
+  __INIT_PDF_CONFIG__?: Config;
   pdfHeader?: PageComponent;
   pdfFooter?: PageComponent;
   content: Content[];
 }
+interface Config {
 
+}
 interface InputText {
   container: "inputText";
   title?: string;
@@ -23,6 +26,7 @@ interface InputText {
     labelTextDecoration?: string;
     valueTextDecoration?: string;
     labelBold?: boolean;
+    labelColon?: boolean; // true
   }>;
 }
 interface QRCode {

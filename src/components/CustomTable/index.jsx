@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
-import React from "react";
 import { formatIteratorsData } from "../../utils";
 import PdfContent from "../PDFContent";
 

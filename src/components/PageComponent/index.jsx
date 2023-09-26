@@ -38,7 +38,10 @@ const PageHeader = ({ config = {} }) => {
 
   return (
     <Text
-      style={{ ...styles.pageHeaderNumber, ...style }}
+      style={{
+        ...styles.pageHeaderNumber,
+        ...style,
+      }}
       render={({ pageNumber, totalPages }) =>
         text ?? `Page ${pageNumber} of ${totalPages}`
       }

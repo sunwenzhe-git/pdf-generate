@@ -14,7 +14,7 @@ export function formatIteratorsData(arr: any) {
 
 export const pdf1: Schema = {
   watermark: {
-    // can config style
+    // TODO can config style
     text: "WatermarkWatermark",
   },
   content: [
@@ -146,6 +146,16 @@ export const pdf1: Schema = {
 };
 
 export const pdf2: Schema = {
+  __INIT_PDF_CONFIG__: {
+    h1: 18,
+    h2: 16,
+    h3: 14,
+    h4: 12,
+    h5: 10,
+    h6: 8,
+    width_first: 60,
+    width_second: 180,
+  },
   watermark: {
     text: "5491143518",
   },
@@ -166,7 +176,7 @@ export const pdf2: Schema = {
           container: [
             {
               container: "title",
-              type: "h3",
+              type: "h4",
               title: "慢性疾病共同治理先导计划",
               textAlign: "center",
             },
@@ -221,34 +231,23 @@ export const pdf2: Schema = {
         { label: "姓名", value: "陳大文二二零" },
         {
           label: "Name",
-          value: "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
+          value: "CHAN,TAI MAN 220",
         },
         {
-          label: "香港身分證HKIC No.",
+          label: "香港身分證 HKIC No.",
           value: "s230024(0)",
         },
         {
-          label: "性別Sex",
+          label: "性別 Sex",
           value: "男M",
         },
         {
-          label: "地區District",
+          label: "地區 District",
           value: "香港管理區HA",
-        },
-        {
-          label: "",
-          value: "HA Hospital",
-        },
-        {
-          label: "",
-          value: "Cheshire Home, Chung Hom Kok",
-        },
-        {
-          label: "",
-          value: "Cc: DHC/DHCE",
         },
       ],
     },
+    { container: "blank" },
     {
       container: "inputText",
       titleBold: true,
@@ -265,13 +264,14 @@ export const pdf2: Schema = {
     { container: "blank" },
     {
       container: "inputText",
-      titleWidth: 250,
+      titleWidth: "width_second",
       dataSource: [
         {
           label: "Thank you for seeing the participant",
           value: "CHAN, TAI MAN 220",
           valueTextDecoration: "underline",
           labelBold: true,
+          labelColon: false,
         },
       ],
     },

@@ -1,36 +1,41 @@
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { useRequest } from "ahooks";
-import React, { useMemo, useRef,useEffect,useState } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import PDFContainer from "./components/PDFContainer";
 import { pdf1, pdf2 } from "./utils";
-
-import qrcode from "qrcode";
-
+const INIT_PDF_CONFIG = {
+  h1: 24,
+  h2: 18,
+  h3: 14.04,
+  h4: 12,
+  h5: 9.96,
+  h6: 9,
+  width_first: 60,
+  width_second: 150,
+};
 function getData() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(pdf2);
+      const data = pdf2;
+      window.__INIT_PDF_CONFIG__ = data?.__INIT_PDF_CONFIG__
+        ? data.__INIT_PDF_CONFIG__
+        : INIT_PDF_CONFIG;
+      resolve(data);
     }, 1000);
   });
 }
 
 const App = () => {
   const iframeRef = useRef(null);
-  const [qr,setQR]= useState();
   const { data, error, loading } = useRequest(getData);
   const PDF = useMemo(() => data && <PDFContainer config={data} />, [data]);
-  useEffect(()=>{
-    qrcode.toDataURL("xxxxxx").then(res=>{
-      setQR(res);
-    })
-  },[])
+
   if (error) {
     return <div>failed to load</div>;
   }
   if (loading) {
     return <div>loading...</div>;
   }
-
 
   return (
     <>
@@ -45,7 +50,6 @@ const App = () => {
           return loading ? "Loading ..." : "下载 PDF";
         }}
       </PDFDownloadLink>
-      <div><img src={qr} alt="XXX" width="200" height="200" /></div>
     </>
   );
 };
