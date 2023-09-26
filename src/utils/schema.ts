@@ -35,34 +35,34 @@ interface Table {
   container: "table";
   dataSource: Content[][];
 }
-type Content =
-  | {
-      container: "text" | "flex" | "title" | "blank" | Content[];
-      dataSource?:
-        | Array<
-            | null
-            | Content[]
-            | {
-                label: string;
-                value: string | string[];
-                unit?: string;
-                labelTextDecoration?: string;
-                valueTextDecoration?: string;
-                labelBold?: boolean;
-              }
-          >
-        | string;
-      type?: string;
-      textAlign?: string;
-      style?: Record<string, any>;
-      title?: string;
-      titleBold?: boolean;
-    }
-  | InputText
-  | QRCode
-  | Table;
+interface Flex {
+  container: "flex";
+  flexDirection?: CSSProperties["flexDirection"];
+  justifyContent?: CSSProperties["justifyContent"];
+  dataSource: Array<null | {
+    flex?: number;
+    container: Content[];
+  }>;
+}
+interface Title {
+  container: "title";
+  title: string;
+  type?: string;
+  textAlign?: string;
+  style?: CSSProperties;
+}
+interface Text {
+  container: "text" | "blank";
+  dataSource?: string;
+}
+interface ContentArr {
+  container: Content[];
+}
+type Content = Text | InputText | QRCode | Table | Title | Flex | ContentArr;
 interface PageComponent {
   textAlign?: "left" | "center" | "right"; // "left"
   textDecoration?: CSSProperties["textDecoration"]; // 'unset'
   text?: string; // { pageHeader: 'Page 1 of 3', pageFooter: '1 / 3' }
+  color?: string; // grey
+  style?: CSSProperties;
 }

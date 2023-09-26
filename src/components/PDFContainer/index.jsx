@@ -1,5 +1,4 @@
 import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
-import React from "react";
 import ArialFont from "../../assets/font/Arial.ttf";
 import MingLiuFont from "../../assets/font/MingLiU.ttf";
 import NotosanZhFont from "../../assets/font/Notosan-zh.otf";
@@ -33,10 +32,16 @@ function PDFContainer(props) {
   return (
     <Document>
       <Page style={styles.body}>
-        <Watermark text={config?.watermark?.text} />
-        <PageHeader config={config?.pageHeader} />
+        {Boolean(config?.watermark) && (
+          <Watermark text={config?.watermark?.text} />
+        )}
+        {Boolean(config?.pdfHeader) && (
+          <PageHeader config={config?.pdfHeader} />
+        )}
         <PdfContent data={config.content} />
-        <PageFooter config={config?.pageFooter} />
+        {Boolean(config?.pdfFooter) && (
+          <PageFooter config={config?.pdfFooter} />
+        )}
       </Page>
     </Document>
   );

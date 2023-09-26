@@ -3,9 +3,9 @@ import React from "react";
 import { formatIteratorsData } from "../../utils";
 import CustomTable from "../CustomTable";
 import Flex from "../Flex";
-import PdfInputText from "../PDFInputText";
+import PdfInputText from "../InputText";
 import PdfText from "../PDFText";
-import PdfTitle from "../PDFTitle";
+import PdfTitle from "../Title";
 import QRCode from "../QRCode";
 
 function PdfContent({ data }) {

@@ -1,12 +1,11 @@
 import { StyleSheet, Text } from "@react-pdf/renderer";
-import React from "react";
 
-const stylesFunc = ({ textAlign, textDecoration }) =>
+const stylesFunc = ({ textAlign, textDecoration, color }) =>
   StyleSheet.create({
     pageHeaderNumber: {
       fontSize: 12,
       left: textAlign === "left" ? "-4vw" : "",
-      color: "grey",
+      color,
       textAlign: textAlign,
       textDecoration: textDecoration,
     },
@@ -17,7 +16,7 @@ const stylesFunc = ({ textAlign, textDecoration }) =>
       left: 0,
       right: 0,
       textAlign: "center",
-      color: "grey",
+      color,
     },
   });
 
@@ -28,12 +27,18 @@ const stylesFunc = ({ textAlign, textDecoration }) =>
  * @returns
  */
 const PageHeader = ({ config = {} }) => {
-  const { textAlign = "left", textDecoration = "unset", text } = config;
-  const styles = stylesFunc({ textAlign, textDecoration });
+  const {
+    textAlign = "left",
+    textDecoration = "unset",
+    text,
+    color = "grey",
+    style,
+  } = config;
+  const styles = stylesFunc({ textAlign, textDecoration, color });
 
   return (
     <Text
-      style={styles.pageHeaderNumber}
+      style={{ ...styles.pageHeaderNumber, ...style }}
       render={({ pageNumber, totalPages }) =>
         text ?? `Page ${pageNumber} of ${totalPages}`
       }
@@ -42,12 +47,18 @@ const PageHeader = ({ config = {} }) => {
   );
 };
 const PageFooter = ({ config = {} }) => {
-  const { textAlign = "left", textDecoration = "unset", text } = config;
-  const styles = stylesFunc({ textAlign, textDecoration });
+  const {
+    textAlign = "left",
+    textDecoration = "unset",
+    text,
+    color = "grey",
+    style,
+  } = config;
+  const styles = stylesFunc({ textAlign, textDecoration, color });
 
   return (
     <Text
-      style={styles.pageFooter}
+      style={{ ...styles.pageFooter, ...style }}
       render={({ pageNumber, totalPages }) =>
         text ?? `${pageNumber} / ${totalPages}`
       }

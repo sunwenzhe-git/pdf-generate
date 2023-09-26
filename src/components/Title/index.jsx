@@ -9,7 +9,9 @@ function PdfTitle({ data }) {
         fontFamily: "Noto Sans",
         textAlign: data?.textAlign,
         fontSize: FONTSIZE_SET[data?.type],
+        paddingBottom: 3,
         textDecoration: data?.textDecoration,
+        ...data.style,
       }}
     >
       {data?.title}

@@ -1,7 +1,6 @@
 import { Text, View } from "@react-pdf/renderer";
-import React from "react";
 import { WIDTH_SET } from "../CustomTable/utils";
-import PdfTitle from "../PDFTitle";
+import PdfTitle from "../Title";
 
 function PdfInputText({ data }) {
   return (

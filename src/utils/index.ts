@@ -151,58 +151,67 @@ export const pdf2: Schema = {
   },
   pdfHeader: {
     textAlign: "center",
-    // textDecoration: ""
+    textDecoration: "underline",
+    color: "black",
+    style: { paddingTop: 3 },
+    text: "For clinical use only and not for distribution",
   },
   content: [
     {
       container: "flex",
       dataSource: [
         null,
-        [
-          {
-            container: "title",
-            type: "h3",
-            title: "慢性疾病共同治理先导计划",
-            textAlign: "center",
-          },
-          {
-            container: "title",
-            type: "h4",
-            title: "Chronic Disease Co-Care Pilot Schema",
-            textAlign: "center",
-          },
-          {
-            container: "title",
-            type: "h4",
-            title: "Consultation Letter",
-            textAlign: "center",
-            style: { paddingTop: 20 },
-          },
-        ],
-        [
-          {
-            container: "qrCode",
-            dataSource: "https://example.com",
-            describe: [
-              {
-                container: "inputText",
-                title: "Reference No.:",
-                dataSource: [
-                  {
-                    label: "",
-                    value: "23830003230000252595",
-                  },
-                ],
-              },
-            ],
-            size: 100,
-          },
-        ],
+        {
+          flex: 2,
+          container: [
+            {
+              container: "title",
+              type: "h3",
+              title: "慢性疾病共同治理先导计划",
+              textAlign: "center",
+            },
+            {
+              container: "title",
+              type: "h4",
+              title: "Chronic Disease Co-Care Pilot Schema",
+              textAlign: "center",
+            },
+            {
+              container: "title",
+              type: "h4",
+              title: "Consultation Letter",
+              textAlign: "center",
+              style: { paddingTop: 6 },
+            },
+          ],
+        },
+        {
+          container: [
+            {
+              container: "qrCode",
+              dataSource: "https://example.com",
+              describe: [
+                {
+                  container: "inputText",
+                  title: "Reference No.:",
+                  dataSource: [
+                    {
+                      label: "",
+                      value: "23830003230000252595",
+                    },
+                  ],
+                },
+              ],
+              size: 100,
+            },
+          ],
+        },
       ],
     },
     {
       container: "title",
       title: "服務使用者資料",
+      type: "h4"
     },
     {
       container: "inputText",
