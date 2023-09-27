@@ -6,7 +6,9 @@ function PdfInputText({ data }) {
     <View style={{ ...data.style }}>
       {!!data?.title && <PdfTitle data={data} />}
       {data?.col && (
-        <View style={{ display: "flex", flexDirection: "row" }}>
+        <View
+          style={{ display: "flex", flexDirection: "row", marginBottom: 8 }}
+        >
           {Array.from({ length: data.col }, (_, index) => index).map((k) => (
             <Text
               key={k}
@@ -14,8 +16,8 @@ function PdfInputText({ data }) {
                 fontFamily: "Noto Sans",
                 marginLeft:
                   k === 0
-                    ? window.__INIT_PDF_CONFIG__[data?.titleWidth] ||
-                      data?.titleWidth
+                    ? window.__INIT_PDF_CONFIG__[data?.lableWidth] ||
+                      data?.lableWidth
                     : undefined,
                 textDecoration: data?.textDecoration,
                 flex: 1,
@@ -34,15 +36,19 @@ function PdfInputText({ data }) {
           return (
             <View
               key={k.value}
-              style={{ display: "flex", flexDirection: "row" }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginBottom: 4,
+              }}
             >
               <Text
                 style={{
-                  fontFamily: data.titleBold ? "Noto Sans" : "pingFang",
+                  fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
                   fontSize: window.__INIT_PDF_CONFIG__.h5,
                   width:
-                    window.__INIT_PDF_CONFIG__[data?.titleWidth] ||
-                    data?.titleWidth,
+                    window.__INIT_PDF_CONFIG__[data?.lableWidth] ??
+                    data?.lableWidth,
                   textDecoration: k?.labelTextDecoration,
                 }}
               >
@@ -61,7 +67,7 @@ function PdfInputText({ data }) {
                         flex: 1,
                       }}
                     >
-                      {` ${k?.value?.[vItem]}`}
+                      {`${labelColon ? "" : " "}${k?.value?.[vItem]}`}
                     </Text>
                   ))}
                 </>
@@ -69,13 +75,12 @@ function PdfInputText({ data }) {
                 <Text
                   style={{
                     flex: 1,
-                    top: data.titleBold && !k.labelBold ? "-2pt" : "",
                     textDecoration: k?.valueTextDecoration,
                     fontSize: window.__INIT_PDF_CONFIG__.h5,
                     fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
                   }}
                 >
-                  {` ${k?.value} ${k?.unit ?? ""}`}
+                  {`${labelColon ? "" : " "}${k?.value} ${k?.unit ?? ""}`}
                 </Text>
               )}
             </View>

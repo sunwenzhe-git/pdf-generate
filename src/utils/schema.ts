@@ -25,9 +25,9 @@ interface InputText {
   title?: string;
   titleBold?: boolean;
   col?: number;
-  style?: CSSProperties;
+  style?: CSSProperties | string;
   colTitle?: string[];
-  titleWidth?: string | number;
+  lableWidth?: string | number;
   dataSource: Array<{
     label: string;
     value: string | string[];
@@ -62,6 +62,7 @@ interface Title {
   title: string;
   type?: string;  // h4
   textAlign?: string;
+  titleWidth?: string | number;
   style?: CSSProperties;
 }
 interface Text {

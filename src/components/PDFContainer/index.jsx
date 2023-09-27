@@ -31,13 +31,9 @@ function PDFContainer(props) {
         {Boolean(config?.watermark) && (
           <Watermark text={config?.watermark?.text} />
         )}
-        {Boolean(config?.pdfHeader) && (
-          <PageHeader config={config?.pdfHeader} />
-        )}
+        <PageHeader config={config?.pdfHeader} />
         <PdfContent data={config.content} />
-        {Boolean(config?.pdfFooter) && (
-          <PageFooter config={config?.pdfFooter} />
-        )}
+        <PageFooter config={config?.pdfFooter} />
       </Page>
     </Document>
   );

@@ -23,14 +23,16 @@ export const pdf1: Schema = {
         [
           {
             container: "title",
-            title: "中文CDCC DM & HT Management Optometry",
+            title: "CDCC DM & HT Management Optometry",
+            style: {
+              padding: "10 30px"
+            },
             type: "h3", // 默认最小的
             textAlign: "center", // 默认left
           },
           {
             container: "inputText",
-            titleBold: true,
-            titleWidth: "width_first",
+            lableWidth: "width_first",
             dataSource: [
               {
                 label: "HKIC No",
@@ -38,8 +40,7 @@ export const pdf1: Schema = {
               },
               {
                 label: "Name",
-                value:
-                  "zhangsanxxxxxxdddddddhhhhhhlllllllzzzzzzmmmmmmmmmdddddda",
+                value: "CHAN , TAI MAN 240",
               },
               {
                 label: "DOB",
@@ -61,7 +62,7 @@ export const pdf1: Schema = {
           {
             container: "inputText",
             title: "Consultation Summary",
-            titleWidth: "width_second",
+            lableWidth: "width_second",
             dataSource: [
               {
                 label: "Prof Service",
@@ -88,7 +89,7 @@ export const pdf1: Schema = {
             container: [
               {
                 container: "inputText",
-                titleWidth: "width_second",
+                lableWidth: "width_second",
                 dataSource: [
                   {
                     label: "Consultation Date",
@@ -105,7 +106,7 @@ export const pdf1: Schema = {
                 title: "Optometry Assessment",
                 col: 2, // 默认1
                 colTitle: ["Right Eye", "Left Eye"],
-                titleWidth: "width_second",
+                lableWidth: "width_second",
                 dataSource: [
                   {
                     label: "Visual Acutiy",
@@ -220,12 +221,12 @@ export const pdf2: Schema = {
     {
       container: "title",
       title: "服務使用者資料",
-      type: "h4"
+      type: "h4",
     },
     {
       container: "inputText",
       title: "Participant Particulars",
-      titleWidth: "width_second",
+      lableWidth: "width_second",
       dataSource: [
         { label: "姓名", value: "陳大文二二零" },
         {
@@ -279,7 +280,7 @@ export const pdf2: Schema = {
     { container: "blank" },
     {
       container: "inputText",
-      titleWidth: "width_second",
+      lableWidth: "width_second",
       dataSource: [
         {
           label: "Thank you for seeing the participant",

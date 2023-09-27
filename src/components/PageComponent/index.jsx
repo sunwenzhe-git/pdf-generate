@@ -40,6 +40,7 @@ const PageHeader = ({ config = {} }) => {
     <Text
       style={{
         ...styles.pageHeaderNumber,
+        fontSize: window.__INIT_PDF_CONFIG__.h5,
         ...style,
       }}
       render={({ pageNumber, totalPages }) =>
@@ -61,7 +62,11 @@ const PageFooter = ({ config = {} }) => {
 
   return (
     <Text
-      style={{ ...styles.pageFooter, ...style }}
+      style={{
+        ...styles.pageFooter,
+        fontSize: window.__INIT_PDF_CONFIG__.h5,
+        ...style,
+      }}
       render={({ pageNumber, totalPages }) =>
         text ?? `${pageNumber} / ${totalPages}`
       }
