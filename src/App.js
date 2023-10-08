@@ -1,8 +1,10 @@
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { useRequest } from "ahooks";
-import React, { useMemo, useRef, useEffect, useState } from "react";
+import PanelContainer from "./panelComponents/PanelContainer";
 import PDFContainer from "./components/PDFContainer";
 import { pdf1, pdf2 } from "./utils";
+
 const INIT_PDF_CONFIG = {
   h1: 24,
   h2: 18,
@@ -27,8 +29,17 @@ function getData() {
 
 const App = () => {
   const iframeRef = useRef(null);
+  const [config, setConfig] = useState(null);
   const { data, error, loading } = useRequest(getData);
-  const PDF = useMemo(() => data && <PDFContainer config={data} />, [data]);
+  useEffect(() => {
+    if (data) {
+      setConfig(data);
+    }
+  }, [data]);
+  const PDF = useMemo(
+    () => config && <PDFContainer config={config} />,
+    [config]
+  );
 
   if (error) {
     return <div>failed to load</div>;
@@ -36,20 +47,22 @@ const App = () => {
   if (loading) {
     return <div>loading...</div>;
   }
-
+  console.log(config, "config");
   return (
     <>
-      <PDFViewer
-        innerRef={iframeRef}
-        style={{ width: "100vw", height: "100vh" }}
-      >
-        {PDF}
-      </PDFViewer>
-      <PDFDownloadLink document={PDF} fileName="PdfContainer.pdf">
-        {({ blob, url, loading, error }) => {
-          return loading ? "Loading ..." : "下载 PDF";
-        }}
-      </PDFDownloadLink>
+      <div style={{ height: "100vh", display: "flex", flexDirection: "row" }}>
+        <div style={{ flex: 1, padding: 30 }}>
+          <PanelContainer />
+          {/* <PDFDownloadLink document={PDF} fileName="PdfContainer.pdf">
+            {({ blob, url, loading, error }) => {
+              return loading ? "Loading ..." : "下载 PDF";
+            }}
+          </PDFDownloadLink> */}
+        </div>
+        <PDFViewer innerRef={iframeRef} style={{ flex: 1 }}>
+          {PDF}
+        </PDFViewer>
+      </div>
     </>
   );
 };
