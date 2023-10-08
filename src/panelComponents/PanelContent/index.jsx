@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Radio, Select } from "antd";
+import { Button, Form, Radio, Select, Space } from "antd";
 
 const PanelContent = (props) => {
   const { listName = "content", label = "content" } = props;
@@ -9,16 +9,24 @@ const PanelContent = (props) => {
       case "Flex":
         return (
           <>
-            <Form.Item label="主轴方向" name={[field.name, "flexDirection"]}>
-              <Radio.Group initialValue="row">
+            <Form.Item
+              label="主轴方向"
+              name={[field.name, "flexDirection"]}
+              initialValue="row"
+            >
+              <Radio.Group>
                 <Radio value="row">从左到右</Radio>
                 <Radio value="row-reverse">从右到左</Radio>
                 <Radio value="column">从上到下</Radio>
                 <Radio value="column-reverse">从下到上</Radio>
               </Radio.Group>
             </Form.Item>
-            <Form.Item label="对齐方式" name={[field.name, "justifyContent"]}>
-              <Radio.Group initialValue="flex-start">
+            <Form.Item
+              label="对齐方式"
+              name={[field.name, "justifyContent"]}
+              initialValue="flex-start"
+            >
+              <Radio.Group>
                 <Radio value="flex-start">左对齐</Radio>
                 <Radio value="center">居中</Radio>
                 <Radio value="space-between">两端对齐</Radio>
