@@ -1,5 +1,14 @@
 import React from "react";
-import { Button, Tabs, Input, Form, Radio, Space, Collapse } from "antd";
+import {
+  Button,
+  Tabs,
+  Input,
+  Form,
+  Radio,
+  Space,
+  Collapse,
+  Switch,
+} from "antd";
 import PanelContent from "../PanelContent";
 
 const MyFormItemContext = React.createContext([]);
@@ -122,15 +131,8 @@ const PanelContainer = () => {
                           <Radio value="right">右</Radio>
                         </Radio.Group>
                       </MyFormItem>
-                      <MyFormItem
-                        name="textDecoration"
-                        label="是否有下划线"
-                        initialValue="underline"
-                      >
-                        <Radio.Group>
-                          <Radio value="underline">是</Radio>
-                          <Radio value="">否</Radio>
-                        </Radio.Group>
+                      <MyFormItem name="textDecoration" label="是否有下划线">
+                        <Switch />
                       </MyFormItem>
                       <MyFormItem name="text" label="文本">
                         <Input />
@@ -147,11 +149,7 @@ const PanelContainer = () => {
         <div style={{ fontSize: 16, fontWeight: "bold", paddingBottom: 10 }}>
           内容
         </div>
-        <Collapse>
-          <Panel>
-            <PanelContent />
-          </Panel>
-        </Collapse>
+        <PanelContent />
       </div>
       <Form.Item style={{ marginTop: "20px" }}>
         <Space>

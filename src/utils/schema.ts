@@ -41,7 +41,7 @@ interface InputText {
 interface QRCode {
   container: "qrCode";
   dataSource: string;
-  describe: Array<Content>; // TODO InputText
+  describe: Array<InputText>;
   size: number;
 }
 interface Table {
