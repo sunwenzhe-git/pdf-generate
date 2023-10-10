@@ -13,7 +13,8 @@ const classes = StyleSheet.create(({ flexDirection, justifyContent }) => ({
 }));
 
 const Flex = ({ data }) => {
-  const { flexDirection = "row", justifyContent = "space-between" } = data;
+  const { flexDirection = "row", justifyContent = "space-between" } =
+    data ?? {};
   const styles = classes({ flexDirection, justifyContent });
 
   return (

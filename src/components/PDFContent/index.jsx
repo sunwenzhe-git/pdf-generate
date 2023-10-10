@@ -19,7 +19,7 @@ function PdfContent({ data }) {
 }
 
 const PdfItem = ({ data }) => {
-  switch (data.container) {
+  switch (data?.container) {
     case "table":
       return <CustomTable data={data?.dataSource} />;
     case "text":

@@ -32,7 +32,7 @@ function PDFContainer(props) {
           <Watermark text={config?.watermark?.text} />
         )}
         <PageHeader config={config?.pdfHeader} />
-        <PdfContent data={config.content} />
+        <PdfContent data={config?.content} />
         <PageFooter config={config?.pdfFooter} />
       </Page>
     </Document>

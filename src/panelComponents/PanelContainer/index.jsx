@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useTransition } from "react";
 import {
   Button,
   Tabs,
@@ -42,15 +42,16 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-const PanelContainer = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+const PanelContainer = ({ setConfig }) => {
+  const [isPending, startTransition] = useTransition();
+  const onValuesChange = (values, allValues) => {
+    startTransition(() => setConfig(allValues));
   };
 
   return (
     <Form
       name="validate_other"
-      onFinish={onFinish}
+      onValuesChange={onValuesChange}
       {...formItemLayout}
       initialValues={{
         "input-number": 3,
