@@ -20,7 +20,7 @@ const App = () => {
   const iframeRef = useRef(null);
   const [config, setConfig] = useState(null);
   const data = useDeferredValue(config);
-  console.log(data, "llll");
+
   useDeepCompareEffect(() => {
     window.__INIT_PDF_CONFIG__ = data?.__INIT_PDF_CONFIG__
       ? data.__INIT_PDF_CONFIG__
@@ -33,7 +33,7 @@ const App = () => {
         <PanelContainer setConfig={setConfig} />
       </div>
       <PDFViewer innerRef={iframeRef} style={{ flex: 1 }}>
-        <PDFContainer config={data} />
+        <PDFContainer config={config} />
       </PDFViewer>
     </div>
   );

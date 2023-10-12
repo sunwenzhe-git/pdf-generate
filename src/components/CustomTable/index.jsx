@@ -21,7 +21,7 @@ const CustomTable = ({ data }) => {
   return (
     <View style={styles.table}>
       {formatIteratorsData(data).map((row, rowIndex) => (
-        <TableRow key={rowIndex} data={row} />
+        <TableRow key={rowIndex} data={row.dataSource} />
       ))}
     </View>
   );

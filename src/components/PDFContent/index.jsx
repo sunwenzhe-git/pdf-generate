@@ -1,5 +1,4 @@
 import { Text } from "@react-pdf/renderer";
-import React from "react";
 import { formatIteratorsData } from "../../utils";
 import CustomTable from "../CustomTable";
 import Flex from "../Flex";
@@ -18,7 +17,7 @@ function PdfContent({ data }) {
   );
 }
 
-const PdfItem = ({ data }) => {
+export const PdfItem = ({ data }) => {
   switch (data?.container) {
     case "table":
       return <CustomTable data={data?.dataSource} />;
@@ -32,8 +31,10 @@ const PdfItem = ({ data }) => {
       return <PdfTitle data={data} />;
     case "inputText":
       return <PdfInputText data={data} />;
+    case "containers":
+      return <PdfContent data={data.dataSource} />;
     case "blank":
-      return <Text> </Text>;
+      return <Text></Text>;
     default:
       return <></>;
   }

@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
-import PdfContent from "../PDFContent";
+import { PdfItem } from "../PDFContent";
 import { formatIteratorsData } from "../../utils";
 
 const classes = StyleSheet.create(({ flexDirection, justifyContent }) => ({
@@ -25,7 +25,7 @@ const Flex = ({ data }) => {
             style={[styles.column, { flex: item?.flex ? item.flex : 1 }]}
             key={index}
           >
-            {!!item?.container && <PdfContent data={item.container} />}
+            {!!item?.container && <PdfItem data={item} />}
           </View>
         );
       })}
