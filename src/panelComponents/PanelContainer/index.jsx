@@ -9,6 +9,7 @@ import {
   Collapse,
   Switch,
 } from "antd";
+import { ProForm } from "@ant-design/pro-components";
 import PanelContent from "../PanelContent";
 
 const MyFormItemContext = React.createContext([]);
@@ -45,22 +46,12 @@ const formItemLayout = {
 const PanelContainer = ({ setConfig }) => {
   const [isPending, startTransition] = useTransition();
   const onValuesChange = (values, allValues) => {
+    console.log(allValues, "kkkkkk");
     startTransition(() => setConfig(allValues));
   };
 
   return (
-    <Form
-      name="validate_other"
-      onValuesChange={onValuesChange}
-      {...formItemLayout}
-      initialValues={{
-        "input-number": 3,
-        "checkbox-group": ["A", "B"],
-        rate: 3.5,
-        "color-picker": null,
-      }}
-      style={{ maxWidth: 600 }}
-    >
+    <ProForm name="validate_other" onValuesChange={onValuesChange}>
       <div style={{ paddingBottom: 10 }}>
         <div style={{ fontSize: 16, fontWeight: "bold", paddingBottom: 10 }}>
           水印
@@ -152,15 +143,7 @@ const PanelContainer = ({ setConfig }) => {
         </div>
         <PanelContent />
       </div>
-      <Form.Item style={{ marginTop: "20px" }}>
-        <Space>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Button htmlType="reset">reset</Button>
-        </Space>
-      </Form.Item>
-    </Form>
+    </ProForm>
   );
 };
 
