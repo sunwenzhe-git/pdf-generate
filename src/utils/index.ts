@@ -20,122 +20,141 @@ export const pdf1: Schema = {
     {
       container: "table",
       dataSource: [
-        [
-          {
-            container: "title",
-            title: "CDCC DM & HT Management Optometry",
-            style: {
-              padding: "10 30px"
+        {
+          container: "containers",
+          dataSource: [
+            {
+              container: "title",
+              title: "CDCC DM & HT Management Optometry",
+              style: {
+                padding: "10 30px"
+              },
+              type: "h3", // 默认最小的
+              textAlign: "center", // 默认left
             },
-            type: "h3", // 默认最小的
-            textAlign: "center", // 默认left
-          },
-          {
-            container: "inputText",
-            lableWidth: "width_first",
-            dataSource: [
-              {
-                label: "HKIC No",
-                value: "s230024(0)",
+            {
+              container: "inputText",
+              lableWidth: "width_first",
+              dataSource: [
+                {
+                  label: "HKIC No",
+                  value: "s230024(0)",
+                },
+                {
+                  label: "Name",
+                  value: "CHAN , TAI MAN 240",
+                },
+                {
+                  label: "DOB",
+                  value: "01-Jan-1960",
+                },
+                {
+                  label: "Age",
+                  value: "63",
+                  unit: "years",
+                },
+                {
+                  label: "Sex",
+                  value: "Male",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          container: "containers",
+          dataSource: [
+            {
+              container: "title",
+              title: "CDCC DM & HT Management Optometry",
+              style: {
+                padding: "10 30px"
               },
-              {
-                label: "Name",
-                value: "CHAN , TAI MAN 240",
-              },
-              {
-                label: "DOB",
-                value: "01-Jan-1960",
-              },
-              {
-                label: "Age",
-                value: "63",
-                unit: "years",
-              },
-              {
-                label: "Sex",
-                value: "Male",
-              },
-            ],
-          },
-        ],
-        [
-          {
-            container: "inputText",
-            title: "Consultation Summary",
-            lableWidth: "width_second",
-            dataSource: [
-              {
-                label: "Prof Service",
-                value: "Optomertry Service",
-              },
-              {
-                label: "Programme",
-                value: "Chonic Disease Co-Care Pilot Scheme",
-              },
-              {
-                label: "Create Centre",
-                value:
-                  "VHC4 HOSPITALmkmkmkmkmkmkmkmkmmkmkmkmkmmlkdsdsppoeiwoeijijioqjodioeiie",
-              },
-              {
-                label: "Create by",
-                value: "Doctor TASHSOP, DOCTOR001",
-              },
-            ],
-          },
-        ],
-        [
-          {
-            container: [
-              {
-                container: "inputText",
-                lableWidth: "width_second",
-                dataSource: [
-                  {
-                    label: "Consultation Date",
-                    value: "07-Sep-2023",
-                  },
-                  {
-                    label: "Consultation Type",
-                    value: "F to F Consultation",
-                  },
-                ],
-              },
-              {
-                container: "inputText",
-                title: "Optometry Assessment",
-                col: 2, // 默认1
-                colTitle: ["Right Eye", "Left Eye"],
-                lableWidth: "width_second",
-                dataSource: [
-                  {
-                    label: "Visual Acutiy",
-                    value: ["6/3(without pinhole)", "6/4(with pinhole)"],
-                  },
-                  {
-                    label: "",
-                    value: ["6/5(without pinhole)", "6/6(with pinhole)"],
-                  },
-                  {
-                    label: "Retinal phatography done",
-                    value: ["No", "Yes"],
-                  },
-                  {
-                    label: "Diabetic Retinopathy",
-                    value: [
-                      "No proliferative-ccccclllllkkkkkkoooooooopppppiiiiuuu",
-                      "Mild non-proliferative",
-                    ],
-                  },
-                ],
-              },
-              {
-                container: "text",
-                dataSource: "本文件只适用于xxxxxxxxxxxxxx",
-              },
-            ],
-          },
-        ],
+              type: "h3", // 默认最小的
+              textAlign: "center", // 默认left
+            },
+            {
+              container: "inputText",
+              title: "Consultation Summary",
+              lableWidth: "width_second",
+              dataSource: [
+                {
+                  label: "Prof Service",
+                  value: "Optomertry Service",
+                },
+                {
+                  label: "Programme",
+                  value: "Chonic Disease Co-Care Pilot Scheme",
+                },
+                {
+                  label: "Create Centre",
+                  value:
+                    "VHC4 HOSPITALmkmkmkmkmkmkmkmkmmkmkmkmkmmlkdsdsppoeiwoeijijioqjodioeiie",
+                },
+                {
+                  label: "Create by",
+                  value: "Doctor TASHSOP, DOCTOR001",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          container: "containers",
+          dataSource: [
+            {
+              container: "containers",
+              dataSource: [
+                {
+                  container: "inputText",
+                  lableWidth: "width_second",
+                  dataSource: [
+                    {
+                      label: "Consultation Date",
+                      value: "07-Sep-2023",
+                    },
+                    {
+                      label: "Consultation Type",
+                      value: "F to F Consultation",
+                    },
+                  ],
+                },
+                {
+                  container: "inputText",
+                  title: "Optometry Assessment",
+                  col: 2, // 默认1
+                  colTitle: ["Right Eye", "Left Eye"],
+                  lableWidth: "width_second",
+                  dataSource: [
+                    {
+                      label: "Visual Acutiy",
+                      value: ["6/3(without pinhole)", "6/4(with pinhole)"],
+                    },
+                    {
+                      label: "",
+                      value: ["6/5(without pinhole)", "6/6(with pinhole)"],
+                    },
+                    {
+                      label: "Retinal phatography done",
+                      value: ["No", "Yes"],
+                    },
+                    {
+                      label: "Diabetic Retinopathy",
+                      value: [
+                        "No proliferative-ccccclllllkkkkkkoooooooopppppiiiiuuu",
+                        "Mild non-proliferative",
+                      ],
+                    },
+                  ],
+                },
+                {
+                  container: "text",
+                  dataSource: "本文件只适用于xxxxxxxxxxxxxx",
+                },
+              ],
+            },
+          ],
+        }
       ],
     },
     {
@@ -173,7 +192,8 @@ export const pdf2: Schema = {
         null,
         {
           flex: 2,
-          container: [
+          container: "containers",
+          dataSource: [
             {
               container: "title",
               type: "h4",
@@ -196,25 +216,22 @@ export const pdf2: Schema = {
           ],
         },
         {
-          container: [
+          flex: 1,
+          container: "qrCode",
+          dataSource: "https://example.com",
+          describe: [
             {
-              container: "qrCode",
-              dataSource: "https://example.com",
-              describe: [
+              container: "inputText",
+              title: "Reference No.:",
+              dataSource: [
                 {
-                  container: "inputText",
-                  title: "Reference No.:",
-                  dataSource: [
-                    {
-                      label: "",
-                      value: "23830003230000252595",
-                    },
-                  ],
+                  label: "",
+                  value: "23830003230000252595",
                 },
               ],
-              size: 100,
             },
           ],
+          size: 100,
         },
       ],
     },

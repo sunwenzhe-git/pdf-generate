@@ -46,16 +46,16 @@ interface QRCode {
 }
 interface Table {
   container: "table";
-  dataSource: Content[][];
+  dataSource: Content[];
+}
+type FlexContent = Content & {
+  flex?: number
 }
 interface Flex {
   container: "flex";
   flexDirection?: CSSProperties["flexDirection"];
   justifyContent?: CSSProperties["justifyContent"];
-  dataSource: Array<null | {
-    flex?: number;
-    container: Content[];
-  }>;
+  dataSource: Array<null | FlexContent>;
 }
 interface Title {
   container: "title";
@@ -70,10 +70,12 @@ interface Text {
   dataSource?: string;
   style?: CSSProperties;
 }
-interface ContentArr {
-  container: Content[];
+interface Containers {
+  container: "containers";
+  dataSource: Content[]
 }
-type Content = Text | InputText | QRCode | Table | Title | Flex | ContentArr;
+
+type Content = Text | InputText | QRCode | Table | Title | Flex | Containers;
 interface PageComponent {
   textAlign?: "left" | "center" | "right"; // "left"
   textDecoration?: CSSProperties["textDecoration"]; // 'unset'

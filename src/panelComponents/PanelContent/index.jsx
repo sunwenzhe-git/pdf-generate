@@ -4,8 +4,6 @@ import {
   Radio,
   Select,
   Collapse,
-  Divider,
-  Input,
   InputNumber,
   Switch,
 } from "antd";
@@ -62,9 +60,7 @@ function getFormItem(type, field) {
     case "inputText":
       return (
         <>
-          <Form.Item label="标题" name={[field.name, "title"]}>
-            <Input />
-          </Form.Item>
+          <ProFormText name="title" label="标题" />
           <Form.Item
             label="标题是否加粗"
             name={[field.name, "titleBold"]}
@@ -75,12 +71,8 @@ function getFormItem(type, field) {
           <Form.Item label="列数" name={[field.name, "col"]} initialValue={1}>
             <InputNumber min={1} max={3} />
           </Form.Item>
-          <Form.Item label="列标题" name={[field.name, "colTitle"]}>
-            <Input />
-          </Form.Item>
-          <Form.Item label="label宽度" name={[field.name, "lableWidth"]}>
-            <Input />
-          </Form.Item>
+          <ProFormText name="colTitle" label="列标题" />
+          <ProFormText name="lableWidth" label="label宽度" />
           <Collapse>
             <Panel header={"数据源 :"}>
               <Form.List name="dataSource">
@@ -95,15 +87,9 @@ function getFormItem(type, field) {
                     >
                       {fields.map(({ key, name, ...restField }) => (
                         <>
-                          <Form.Item label="label" name={[name, "label"]}>
-                            <Input />
-                          </Form.Item>
-                          <Form.Item label="value" name={[name, "value"]}>
-                            <Input />
-                          </Form.Item>
-                          <Form.Item label="单位" name={[name, "unit"]}>
-                            <Input />
-                          </Form.Item>
+                          <ProFormText name="label" label="label" />
+                          <ProFormText name="value" label="value" />
+                          <ProFormText name="unit" label="单位" />
                           <Form.Item
                             label="label是否有下划线"
                             name={[name, "labelTextDecoration"]}
@@ -168,13 +154,7 @@ function getFormItem(type, field) {
     case "title":
       return (
         <>
-          <Form.Item
-            label="标题"
-            rules={[{ required: true }]}
-            name={[field.name, "title"]}
-          >
-            <Input />
-          </Form.Item>
+          <ProFormText name="title" rules={[{ required: true }]} label="标题" />
           <Form.Item
             label="标题类型"
             name={[field.name, "type"]}
@@ -201,19 +181,13 @@ function getFormItem(type, field) {
               <Radio value="right">右</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item label="标题宽度" name={[field.name, "titleWidth"]}>
-            <Input />
-          </Form.Item>
+          <ProFormText name="titleWidth" label="标题宽度" />
         </>
       );
     case "text":
-      return (
-        <>
-          <Form.Item label="数据源" name={[field.name, "dataSource"]}>
-            <Input />
-          </Form.Item>
-        </>
-      );
+      return <ProFormText name="dataSource" label="数据源" />;
+    case "containers":
+      return <PanelContent listName="container" />;
     default:
       return <></>;
   }
@@ -258,6 +232,7 @@ const PanelContent = (props) => {
                     text: "Text",
                     blank: "空行",
                     null: "空组件",
+                    containers: "组件组",
                   }}
                 />
                 <ProFormDependency key="remark" name={["container"]}>
