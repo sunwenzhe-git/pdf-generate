@@ -17,8 +17,9 @@ interface Config {
   h4?: number;
   h5?: number;
   h6?: number;
-  width_first?: number;
-  width_second?: number;
+  width_1?: number;
+  width_2?: number;
+  width_3?: number;
 }
 interface InputText {
   container: "inputText";

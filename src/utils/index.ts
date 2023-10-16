@@ -172,8 +172,8 @@ export const pdf2: Schema = {
     h4: 12,
     h5: 10,
     h6: 8,
-    width_first: 60,
-    width_second: 180,
+    width_1: 60,
+    width_2: 180,
   },
   watermark: {
     text: "5491143518",

@@ -12,8 +12,9 @@ const INIT_PDF_CONFIG = {
   h4: 12,
   h5: 9.96,
   h6: 9,
-  width_first: 60,
-  width_second: 150,
+  width_1: 60,
+  width_2: 150,
+  width_3: 180,
 };
 window.__INIT_PDF_CONFIG__ = INIT_PDF_CONFIG;
 function formData(config) {

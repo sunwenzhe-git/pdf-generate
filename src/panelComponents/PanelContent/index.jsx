@@ -116,10 +116,14 @@ function getFormItem(type, field) {
               }
             }}
           </ProFormDependency>
-          <ProFormText
-            name="lableWidth"
+          <ProFormSelect
             label="label宽度"
-            initialValue={"width_second"}
+            name="lableWidth"
+            valueEnum={{
+              width_1: "一级",
+              width_2: "二级",
+              width_3: "三级",
+            }}
           />
           <Collapse>
             <Panel header={"数据源 :"}>
@@ -175,6 +179,10 @@ function getFormItem(type, field) {
                                 <ProFormSwitch
                                   name="labelColon"
                                   label="label是否需要冒号"
+                                />
+                                <ProFormSwitch
+                                  name="valueBold"
+                                  label="value是否加粗"
                                 />
                                 <ProFormRadio.Group
                                   name="valueTextDecoration"
