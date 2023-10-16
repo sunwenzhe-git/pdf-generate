@@ -1,21 +1,32 @@
-import {
-  Button,
-  Form,
-  Radio,
-  Select,
-  Collapse,
-  InputNumber,
-  Switch,
-} from "antd";
+import { Form, Radio, Select, Collapse, InputNumber, Switch } from "antd";
 import {
   ProFormDependency,
   ProFormList,
   ProFormText,
   ProCard,
   ProFormSelect,
+  ProFormRadio,
+  ProFormDigit,
+  ProFormSwitch,
 } from "@ant-design/pro-components";
 
 const { Panel } = Collapse;
+function getOptions(type, field) {
+  switch (type) {
+    case "flex":
+      return (
+        <ProFormDigit
+          label="flex"
+          name="flex"
+          initialValue={1}
+          min={1}
+          max={5}
+        />
+      );
+    default:
+      return <></>;
+  }
+}
 function getFormItem(type, field) {
   switch (type) {
     case "flex":
@@ -44,39 +55,88 @@ function getFormItem(type, field) {
               <Radio value="space-between">两端对齐</Radio>
             </Radio.Group>
           </Form.Item>
-          <PanelContent label="数据源" listName={[field.name, "dataSource"]} />
+          <PanelContent label="数据源" type="flex" listName={"dataSource"} />
         </>
       );
     case "qrCode":
       return (
         <>
           <ProFormText name="dataSource" label="数据源" />
-          <Form.Item label="尺寸" name={[field.name, "size"]}>
+          <Form.Item
+            label="尺寸"
+            initialValue={100}
+            name={[field.name, "size"]}
+          >
             <InputNumber min={100} max={300} />
           </Form.Item>
-          <PanelContent label="描述信息" listName={[field.name, "describe"]} />
+          <PanelContent label="描述信息" listName="describe" />
         </>
       );
     case "inputText":
       return (
         <>
-          <ProFormText name="title" label="标题" />
-          <Form.Item
-            label="标题是否加粗"
-            name={[field.name, "titleBold"]}
-            initialValue={true}
-          >
-            <Switch defaultChecked />
-          </Form.Item>
-          <Form.Item label="列数" name={[field.name, "col"]} initialValue={1}>
-            <InputNumber min={1} max={3} />
-          </Form.Item>
-          <ProFormText name="colTitle" label="列标题" />
-          <ProFormText name="lableWidth" label="label宽度" />
+          <ProFormSwitch name="isTitle" label="是否有标题" />
+          <ProFormDependency name={["isTitle"]}>
+            {({ isTitle }) => {
+              if (isTitle) {
+                return (
+                  <>
+                    <ProFormText name="title" label="标题" />
+                    <ProFormDigit
+                      label="列数"
+                      name="col"
+                      initialValue={1}
+                      min={1}
+                      max={3}
+                    />
+                  </>
+                );
+              }
+            }}
+          </ProFormDependency>
+          <ProFormDependency name={["title"]}>
+            {({ title }) => {
+              if (title) {
+                return (
+                  <Form.Item
+                    label="标题是否加粗"
+                    name={[field.name, "titleBold"]}
+                    initialValue={true}
+                  >
+                    <Switch defaultChecked />
+                  </Form.Item>
+                );
+              }
+            }}
+          </ProFormDependency>
+          <ProFormDependency name={["col"]}>
+            {({ col }) => {
+              if (col > 1) {
+                return <ProFormText name="colTitle" label="列标题" />;
+              }
+            }}
+          </ProFormDependency>
+          <ProFormText
+            name="lableWidth"
+            label="label宽度"
+            initialValue={"width_second"}
+          />
           <Collapse>
             <Panel header={"数据源 :"}>
-              <Form.List name="dataSource">
-                {(fields, { add, remove }) => {
+              <ProFormList
+                name="dataSource"
+                itemRender={({ listDom, action }, { index }) => (
+                  <ProCard
+                    bordered
+                    style={{ marginBlockEnd: 8 }}
+                    extra={action}
+                    bodyStyle={{ paddingBlockEnd: 0 }}
+                  >
+                    {listDom}
+                  </ProCard>
+                )}
+              >
+                {({ name }, index) => {
                   return (
                     <div
                       style={{
@@ -85,44 +145,60 @@ function getFormItem(type, field) {
                         flexDirection: "column",
                       }}
                     >
-                      {fields.map(({ key, name, ...restField }) => (
-                        <>
-                          <ProFormText name="label" label="label" />
-                          <ProFormText name="value" label="value" />
-                          <ProFormText name="unit" label="单位" />
-                          <Form.Item
-                            label="label是否有下划线"
-                            name={[name, "labelTextDecoration"]}
-                          >
-                            <Switch />
-                          </Form.Item>
-                          <Form.Item
-                            label="label是否加粗"
-                            name={[name, "labelBold"]}
-                          >
-                            <Switch />
-                          </Form.Item>
-                          <Form.Item
-                            label="label是否需要冒号"
-                            name={[name, "labelColon"]}
-                          >
-                            <Switch />
-                          </Form.Item>
-                          <Form.Item
-                            label="value是否有下划线"
-                            name={[name, "valueTextDecoration"]}
-                          >
-                            <Switch />
-                          </Form.Item>
-                        </>
-                      ))}
-                      <Button type="dashed" onClick={() => add()} block>
-                        + Add Item
-                      </Button>
+                      <ProFormText name="label" label="label" />
+                      <ProFormText name="value" label="value" />
+                      <ProFormSwitch name="other" label="是否需要其它配置" />
+                      <ProFormDependency name={["other"]}>
+                        {({ other }) => {
+                          if (other) {
+                            return (
+                              <>
+                                <ProFormText name="unit" label="单位" />
+                                <ProFormRadio.Group
+                                  name="labelTextDecoration"
+                                  label="label文本装饰"
+                                  options={[
+                                    {
+                                      label: "无",
+                                      value: "none",
+                                    },
+                                    {
+                                      label: "下划线",
+                                      value: "underline",
+                                    },
+                                  ]}
+                                />
+                                <ProFormSwitch
+                                  name="labelBold"
+                                  label="label是否加粗"
+                                />
+                                <ProFormSwitch
+                                  name="labelColon"
+                                  label="label是否需要冒号"
+                                />
+                                <ProFormRadio.Group
+                                  name="valueTextDecoration"
+                                  label="value文本装饰"
+                                  options={[
+                                    {
+                                      label: "无",
+                                      value: "none",
+                                    },
+                                    {
+                                      label: "下划线",
+                                      value: "underline",
+                                    },
+                                  ]}
+                                />
+                              </>
+                            );
+                          }
+                        }}
+                      </ProFormDependency>
                     </div>
                   );
                 }}
-              </Form.List>
+              </ProFormList>
             </Panel>
           </Collapse>
         </>
@@ -132,7 +208,19 @@ function getFormItem(type, field) {
         <>
           <Collapse>
             <Panel header={"数据源 :"}>
-              <ProFormList name="dataSource">
+              <ProFormList
+                name="dataSource"
+                itemRender={({ listDom, action }, { index }) => (
+                  <ProCard
+                    bordered
+                    style={{ marginBlockEnd: 8 }}
+                    extra={action}
+                    bodyStyle={{ paddingBlockEnd: 0 }}
+                  >
+                    {listDom}
+                  </ProCard>
+                )}
+              >
                 {(fields, index) => {
                   return (
                     <div
@@ -181,19 +269,19 @@ function getFormItem(type, field) {
               <Radio value="right">右</Radio>
             </Radio.Group>
           </Form.Item>
-          <ProFormText name="titleWidth" label="标题宽度" />
+          {/* <ProFormText name="style" label="样式" /> */}
         </>
       );
     case "text":
       return <ProFormText name="dataSource" label="数据源" />;
     case "containers":
-      return <PanelContent listName="container" />;
+      return <PanelContent listName={"dataSource"} label={"dataSource"} />;
     default:
       return <></>;
   }
 }
 const PanelContent = (props) => {
-  const { listName = "content", label = "content" } = props;
+  const { listName = "content", type, label = "content" } = props;
 
   return (
     <Collapse>
@@ -220,6 +308,7 @@ const PanelContent = (props) => {
                   flexDirection: "column",
                 }}
               >
+                {getOptions(type, fields)}
                 <ProFormSelect
                   label="container"
                   name="container"

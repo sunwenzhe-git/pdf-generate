@@ -282,7 +282,6 @@ export const pdf2: Schema = {
     },
     {
       container: "inputText",
-      titleBold: true,
       style: { marginTop: 3 },
       dataSource: [
         {
@@ -291,6 +290,7 @@ export const pdf2: Schema = {
           labelTextDecoration: "underline",
           valueTextDecoration: "underline",
           labelBold: true,
+          valueBold: true,
         },
       ],
     },
@@ -303,7 +303,7 @@ export const pdf2: Schema = {
           label: "Thank you for seeing the participant",
           value: "CHAN, TAI MAN 220",
           valueTextDecoration: "underline",
-          labelBold: true,
+          valueBold: true,
           labelColon: false,
         },
       ],

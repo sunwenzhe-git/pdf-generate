@@ -39,7 +39,7 @@ const MyFormItem = ({ name, ...props }) => {
   return <Form.Item name={concatName} {...props} />;
 };
 const formItemLayout = {
-  labelCol: { span: 6 },
+  labelCol: { span: 4 },
   wrapperCol: { span: 14 },
 };
 
@@ -49,9 +49,19 @@ const PanelContainer = ({ setConfig }) => {
     console.log(allValues, "kkkkkk");
     startTransition(() => setConfig(allValues));
   };
-
   return (
-    <ProForm name="validate_other" onValuesChange={onValuesChange}>
+    <ProForm
+      name="validate_other"
+      // {...formItemLayout}
+      // layout={"horizontal"}
+      onValuesChange={onValuesChange}
+    >
+      <div style={{ paddingBottom: 10 }}>
+        <div style={{ fontSize: 16, fontWeight: "bold", paddingBottom: 10 }}>
+          内容
+        </div>
+        <PanelContent />
+      </div>
       <div style={{ paddingBottom: 10 }}>
         <div style={{ fontSize: 16, fontWeight: "bold", paddingBottom: 10 }}>
           水印
@@ -93,12 +103,12 @@ const PanelContainer = ({ setConfig }) => {
                       </MyFormItem>
                       <MyFormItem
                         name="textDecoration"
-                        label="是否有下划线"
+                        label="文本装饰"
                         initialValue="underline"
                       >
                         <Radio.Group>
-                          <Radio value="underline">是</Radio>
-                          <Radio value="">否</Radio>
+                          <Radio value="underline">下划线</Radio>
+                          <Radio value="">无</Radio>
                         </Radio.Group>
                       </MyFormItem>
                       <MyFormItem name="text" label="文本">
@@ -136,12 +146,6 @@ const PanelContainer = ({ setConfig }) => {
             />
           </Panel>
         </Collapse>
-      </div>
-      <div style={{ paddingBottom: 10 }}>
-        <div style={{ fontSize: 16, fontWeight: "bold", paddingBottom: 10 }}>
-          内容
-        </div>
-        <PanelContent />
       </div>
     </ProForm>
   );

@@ -35,6 +35,7 @@ interface InputText {
     labelTextDecoration?: CSSProperties["textDecoration"];
     valueTextDecoration?: CSSProperties["textDecoration"];
     labelBold?: boolean;
+    valueBold?: boolean;
     labelColon?: boolean; // true
   }>;
 }
@@ -62,7 +63,6 @@ interface Title {
   title: string;
   type?: string;  // h4
   textAlign?: string;
-  titleWidth?: string | number;
   style?: CSSProperties;
 }
 interface Text {

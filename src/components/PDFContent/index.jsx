@@ -34,7 +34,7 @@ export const PdfItem = ({ data }) => {
     case "containers":
       return <PdfContent data={data.dataSource} />;
     case "blank":
-      return <Text></Text>;
+      return <Text> </Text>;
     default:
       return <></>;
   }
