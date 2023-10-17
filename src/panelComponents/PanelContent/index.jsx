@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   Form,
   Radio,
@@ -36,7 +37,7 @@ function getOptions(type, field) {
       return <></>;
   }
 }
-function getFormItem(type, field) {
+function getFormItem(type, field, ref) {
   switch (type) {
     case "flex":
       return (
@@ -146,7 +147,7 @@ function getFormItem(type, field) {
             {({ col }) => {
               if (col > 1) {
                 return (
-                  <Collapse>
+                  <Collapse ref={ref} bordered={false}>
                     <Panel header={"数据源 :"}>
                       <ProFormList
                         name="dataSource"
@@ -243,8 +244,8 @@ function getFormItem(type, field) {
                 );
               } else {
                 return (
-                  <Collapse>
-                    <Panel header={"数据源 :"}>
+                  <Collapse bordered={false}>
+                    <Panel ref={ref} header={"数据源 :"}>
                       <ProFormList
                         name="dataSource"
                         itemRender={({ listDom, action }, { index }) => (
@@ -339,7 +340,7 @@ function getFormItem(type, field) {
     case "table":
       return (
         <>
-          <Collapse>
+          <Collapse bordered={false}>
             <Panel header={"数据源 :"}>
               <ProFormList
                 name="dataSource"
@@ -420,7 +421,7 @@ function getFormItem(type, field) {
 }
 const PanelContent = (props) => {
   const { listName = "content", type, label = "" } = props;
-
+  const ref = useRef(null);
   return (
     <Collapse>
       <Panel header={`${label}`}>
@@ -466,7 +467,7 @@ const PanelContent = (props) => {
                   {({ container }) => {
                     return (
                       <div style={{ paddingBottom: 10 }}>
-                        {getFormItem(container, fields)}
+                        {getFormItem(container, fields, ref)}
                       </div>
                     );
                   }}
