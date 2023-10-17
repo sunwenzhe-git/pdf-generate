@@ -1,7 +1,6 @@
 import { Text } from "@react-pdf/renderer";
 
 function PdfTitle({ data }) {
-  console.log(data.style, "kkkk");
   return (
     <Text
       style={{

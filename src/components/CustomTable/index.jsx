@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
 import { formatIteratorsData } from "../../utils";
-import PdfContent from "../PDFContent";
+import { PdfItem } from "../PDFContent";
 
 const styles = StyleSheet.create({
   table: {
@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
 const CustomTable = ({ data }) => {
   return (
     <View style={styles.table}>
-      {formatIteratorsData(data).map((row, rowIndex) => (
-        <TableRow key={rowIndex} data={row.dataSource} />
+      {formatIteratorsData(data).map((item, rowIndex) => (
+        <TableRow key={rowIndex} data={item.row} />
       ))}
     </View>
   );
@@ -37,16 +37,10 @@ const TableRow = ({ data }) => {
   );
 };
 
-const TableCell = ({ cell, className }) => {
+const TableCell = ({ cell }) => {
   return (
-    <View style={className === "none" ? "" : styles.tableCell}>
-      {cell?.container instanceof Array ? (
-        formatIteratorsData(cell.container).map((cell, cellIndex) => (
-          <TableCell key={cellIndex} cell={cell} className={"none"} />
-        ))
-      ) : (
-        <PdfContent data={[{ ...cell }]} />
-      )}
+    <View style={styles.tableCell}>
+      <PdfItem data={cell} />
     </View>
   );
 };

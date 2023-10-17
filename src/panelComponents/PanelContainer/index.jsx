@@ -46,7 +46,6 @@ const formItemLayout = {
 const PanelContainer = ({ setConfig }) => {
   const [isPending, startTransition] = useTransition();
   const onValuesChange = (values, allValues) => {
-    console.log(allValues, "kkkkkk");
     startTransition(() => setConfig(allValues));
   };
   return (

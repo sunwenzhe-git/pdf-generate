@@ -3,7 +3,7 @@ import { PDFViewer } from "@react-pdf/renderer";
 import { useDeepCompareEffect } from "ahooks";
 import PanelContainer from "./panelComponents/PanelContainer";
 import PDFContainer from "./components/PDFContainer";
-import { pdf2 } from "./utils";
+import { pdf1 } from "./utils";
 
 const INIT_PDF_CONFIG = {
   h1: 24,

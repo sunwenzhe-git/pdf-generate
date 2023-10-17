@@ -48,7 +48,9 @@ interface QRCode {
 }
 interface Table {
   container: "table";
-  dataSource: Content[];
+  dataSource: Array<{
+    row: Content[]
+  }>;
 }
 type FlexContent = Content & {
   flex?: number

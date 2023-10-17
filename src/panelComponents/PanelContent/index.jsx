@@ -221,7 +221,7 @@ function getFormItem(type, field) {
                 itemRender={({ listDom, action }, { index }) => (
                   <ProCard
                     bordered
-                    style={{ marginBlockEnd: 8 }}
+                    style={{ marginBlockEnd: 8, marginBottom: 8 }}
                     extra={action}
                     bodyStyle={{ paddingBlockEnd: 0 }}
                   >
@@ -236,9 +236,10 @@ function getFormItem(type, field) {
                         display: "flex",
                         rowGap: 16,
                         flexDirection: "column",
+                        marginBlockEnd: 8,
                       }}
                     >
-                      <PanelContent label="行" listName={"describe"} />
+                      <PanelContent label="行" listName={"row"} />
                     </div>
                   );
                 }}
@@ -289,7 +290,7 @@ function getFormItem(type, field) {
   }
 }
 const PanelContent = (props) => {
-  const { listName = "content", type, label = "content" } = props;
+  const { listName = "content", type, label = "" } = props;
 
   return (
     <Collapse>
