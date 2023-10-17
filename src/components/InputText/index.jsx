@@ -14,11 +14,11 @@ function PdfInputText({ data }) {
               key={k}
               style={{
                 fontFamily: "Noto Sans",
-                // marginLeft:
-                //   k === 0
-                //     ? window.__INIT_PDF_CONFIG__[data?.lableWidth] ||
-                //       data?.lableWidth
-                //     : undefined,
+                marginLeft:
+                  k === 0
+                    ? window.__INIT_PDF_CONFIG__[data?.lableWidth] ||
+                      data?.lableWidth
+                    : undefined,
                 textDecoration: data?.textDecoration,
                 flex: 1,
               }}
@@ -41,21 +41,19 @@ function PdfInputText({ data }) {
                 marginBottom: 4,
               }}
             >
-              {!!k?.label && (
-                <Text
-                  style={{
-                    fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
-                    fontSize: window.__INIT_PDF_CONFIG__.h5,
-                    textDecoration: k?.labelTextDecoration,
-                    width:
-                      window.__INIT_PDF_CONFIG__[data?.lableWidth] ??
-                      data?.lableWidth,
-                  }}
-                >
-                  {k?.label}
-                  {k?.label && k?.value && labelColon ? ":" : ""}
-                </Text>
-              )}
+              <Text
+                style={{
+                  fontFamily: k.labelBold ? "Noto Sans" : "pingFang",
+                  fontSize: window.__INIT_PDF_CONFIG__.h5,
+                  textDecoration: k?.labelTextDecoration,
+                  width:
+                    window.__INIT_PDF_CONFIG__[data?.lableWidth] ??
+                    data?.lableWidth,
+                }}
+              >
+                {k?.label ?? ""}
+                {k?.label && k?.value && labelColon ? ":" : ""}
+              </Text>
               {k?.value instanceof Array ? (
                 <>
                   {Array.from(

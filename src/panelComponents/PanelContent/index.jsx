@@ -1,4 +1,12 @@
-import { Form, Radio, Select, Collapse, InputNumber, Switch } from "antd";
+import {
+  Form,
+  Radio,
+  Select,
+  Collapse,
+  InputNumber,
+  Switch,
+  Input,
+} from "antd";
 import {
   ProFormDependency,
   ProFormList,
@@ -9,6 +17,7 @@ import {
   ProFormDigit,
   ProFormSwitch,
 } from "@ant-design/pro-components";
+import { MyFormItem, MyFormItemGroup } from "../FormGroup";
 
 const { Panel } = Collapse;
 function getOptions(type, field) {
@@ -109,13 +118,6 @@ function getFormItem(type, field) {
               }
             }}
           </ProFormDependency>
-          <ProFormDependency name={["col"]}>
-            {({ col }) => {
-              if (col > 1) {
-                return <ProFormText name="colTitle" label="列标题" />;
-              }
-            }}
-          </ProFormDependency>
           <ProFormSelect
             label="label宽度"
             name="lableWidth"
@@ -125,90 +127,213 @@ function getFormItem(type, field) {
               width_3: "三级",
             }}
           />
-          <Collapse>
-            <Panel header={"数据源 :"}>
-              <ProFormList
-                name="dataSource"
-                itemRender={({ listDom, action }, { index }) => (
-                  <ProCard
-                    bordered
-                    style={{ marginBlockEnd: 8 }}
-                    extra={action}
-                    bodyStyle={{ paddingBlockEnd: 0 }}
-                  >
-                    {listDom}
-                  </ProCard>
-                )}
-              >
-                {({ name }, index) => {
-                  return (
-                    <div
-                      style={{
-                        display: "flex",
-                        rowGap: 16,
-                        flexDirection: "column",
-                      }}
-                    >
-                      <ProFormText name="label" label="label" />
-                      <ProFormText name="value" label="value" />
-                      <ProFormSwitch name="other" label="是否需要其它配置" />
-                      <ProFormDependency name={["other"]}>
-                        {({ other }) => {
-                          if (other) {
-                            return (
-                              <>
-                                <ProFormText name="unit" label="单位" />
-                                <ProFormRadio.Group
-                                  name="labelTextDecoration"
-                                  label="label文本装饰"
-                                  options={[
-                                    {
-                                      label: "无",
-                                      value: "none",
-                                    },
-                                    {
-                                      label: "下划线",
-                                      value: "underline",
-                                    },
-                                  ]}
-                                />
-                                <ProFormSwitch
-                                  name="labelBold"
-                                  label="label是否加粗"
-                                />
-                                <ProFormSwitch
-                                  name="labelColon"
-                                  label="label是否需要冒号"
-                                />
-                                <ProFormSwitch
-                                  name="valueBold"
-                                  label="value是否加粗"
-                                />
-                                <ProFormRadio.Group
-                                  name="valueTextDecoration"
-                                  label="value文本装饰"
-                                  options={[
-                                    {
-                                      label: "无",
-                                      value: "none",
-                                    },
-                                    {
-                                      label: "下划线",
-                                      value: "underline",
-                                    },
-                                  ]}
-                                />
-                              </>
-                            );
-                          }
+          <ProFormDependency name={["col"]}>
+            {({ col }) => {
+              if (col > 1) {
+                return (
+                  <ProFormSelect
+                    mode="tags"
+                    name="colTitle"
+                    label="列标题"
+                    maxTagTextLength={col}
+                    suffixIcon={<span></span>}
+                  />
+                );
+              }
+            }}
+          </ProFormDependency>
+          <ProFormDependency name={["col"]}>
+            {({ col }) => {
+              if (col > 1) {
+                return (
+                  <Collapse>
+                    <Panel header={"数据源 :"}>
+                      <ProFormList
+                        name="dataSource"
+                        itemRender={({ listDom, action }, { index }) => (
+                          <ProCard
+                            bordered
+                            style={{ marginBlockEnd: 8 }}
+                            extra={action}
+                            bodyStyle={{ paddingBlockEnd: 0 }}
+                          >
+                            {listDom}
+                          </ProCard>
+                        )}
+                      >
+                        {({ name }, index) => {
+                          return (
+                            <div
+                              style={{
+                                display: "flex",
+                                rowGap: 16,
+                                flexDirection: "column",
+                              }}
+                            >
+                              <ProFormText name="label" label="label" />
+                              <ProFormSelect
+                                mode="tags"
+                                name="value"
+                                label="value"
+                                maxTagTextLength={col}
+                                suffixIcon={<span></span>}
+                              />
+                              {/* <ProFormText name="value" label="value" /> */}
+                              <ProFormSwitch
+                                name="other"
+                                label="是否需要其它配置"
+                              />
+                              <ProFormDependency name={["other"]}>
+                                {({ other }) => {
+                                  if (other) {
+                                    return (
+                                      <>
+                                        <ProFormText name="unit" label="单位" />
+                                        <ProFormRadio.Group
+                                          name="labelTextDecoration"
+                                          label="label文本装饰"
+                                          options={[
+                                            {
+                                              label: "无",
+                                              value: "none",
+                                            },
+                                            {
+                                              label: "下划线",
+                                              value: "underline",
+                                            },
+                                          ]}
+                                        />
+                                        <ProFormSwitch
+                                          name="labelBold"
+                                          label="label是否加粗"
+                                        />
+                                        <ProFormSwitch
+                                          name="labelColon"
+                                          label="label是否需要冒号"
+                                        />
+                                        <ProFormSwitch
+                                          name="valueBold"
+                                          label="value是否加粗"
+                                        />
+                                        <ProFormRadio.Group
+                                          name="valueTextDecoration"
+                                          label="value文本装饰"
+                                          options={[
+                                            {
+                                              label: "无",
+                                              value: "none",
+                                            },
+                                            {
+                                              label: "下划线",
+                                              value: "underline",
+                                            },
+                                          ]}
+                                        />
+                                      </>
+                                    );
+                                  }
+                                }}
+                              </ProFormDependency>
+                            </div>
+                          );
                         }}
-                      </ProFormDependency>
-                    </div>
-                  );
-                }}
-              </ProFormList>
-            </Panel>
-          </Collapse>
+                      </ProFormList>
+                    </Panel>
+                  </Collapse>
+                );
+              } else {
+                return (
+                  <Collapse>
+                    <Panel header={"数据源 :"}>
+                      <ProFormList
+                        name="dataSource"
+                        itemRender={({ listDom, action }, { index }) => (
+                          <ProCard
+                            bordered
+                            style={{ marginBlockEnd: 8 }}
+                            extra={action}
+                            bodyStyle={{ paddingBlockEnd: 0 }}
+                          >
+                            {listDom}
+                          </ProCard>
+                        )}
+                      >
+                        {({ name }, index) => {
+                          return (
+                            <div
+                              style={{
+                                display: "flex",
+                                rowGap: 16,
+                                flexDirection: "column",
+                              }}
+                            >
+                              <ProFormText name="label" label="label" />
+                              <ProFormText name="value" label="value" />
+                              <ProFormSwitch
+                                name="other"
+                                label="是否需要其它配置"
+                              />
+                              <ProFormDependency name={["other"]}>
+                                {({ other }) => {
+                                  if (other) {
+                                    return (
+                                      <>
+                                        <ProFormText name="unit" label="单位" />
+                                        <ProFormRadio.Group
+                                          name="labelTextDecoration"
+                                          label="label文本装饰"
+                                          options={[
+                                            {
+                                              label: "无",
+                                              value: "none",
+                                            },
+                                            {
+                                              label: "下划线",
+                                              value: "underline",
+                                            },
+                                          ]}
+                                        />
+                                        <ProFormSwitch
+                                          name="labelBold"
+                                          label="label是否加粗"
+                                        />
+                                        <ProFormSwitch
+                                          name="labelColon"
+                                          label="label是否需要冒号"
+                                        />
+                                        <ProFormSwitch
+                                          name="valueBold"
+                                          label="value是否加粗"
+                                        />
+                                        <ProFormRadio.Group
+                                          name="valueTextDecoration"
+                                          label="value文本装饰"
+                                          options={[
+                                            {
+                                              label: "无",
+                                              value: "none",
+                                            },
+                                            {
+                                              label: "下划线",
+                                              value: "underline",
+                                            },
+                                          ]}
+                                        />
+                                      </>
+                                    );
+                                  }
+                                }}
+                              </ProFormDependency>
+                            </div>
+                          );
+                        }}
+                      </ProFormList>
+                    </Panel>
+                  </Collapse>
+                );
+              }
+            }}
+          </ProFormDependency>
         </>
       );
     case "table":
@@ -278,7 +403,11 @@ function getFormItem(type, field) {
               <Radio value="right">右</Radio>
             </Radio.Group>
           </Form.Item>
-          {/* <ProFormText name="style" label="样式" /> */}
+          <MyFormItemGroup prefix={[field.name, "style"]}>
+            <MyFormItem name="padding" label="内边距">
+              <Input />
+            </MyFormItem>
+          </MyFormItemGroup>
         </>
       );
     case "text":

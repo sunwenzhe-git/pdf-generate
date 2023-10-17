@@ -26,7 +26,7 @@ export const pdf1: Schema = {
               container: "title",
               title: "CDCC DM & HT Management Optometry",
               style: {
-                padding: "10 30px"
+                padding: "10px 30px"
               },
               type: "h3", // 默认最小的
               textAlign: "center", // 默认left

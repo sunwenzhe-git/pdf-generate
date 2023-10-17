@@ -1,48 +1,10 @@
 import React, { useTransition } from "react";
-import {
-  Button,
-  Tabs,
-  Input,
-  Form,
-  Radio,
-  Space,
-  Collapse,
-  Switch,
-} from "antd";
+import { Tabs, Input, Radio, Collapse, Switch } from "antd";
 import { ProForm } from "@ant-design/pro-components";
 import PanelContent from "../PanelContent";
+import { MyFormItem, MyFormItemGroup } from "../FormGroup";
 
-const MyFormItemContext = React.createContext([]);
 const { Panel } = Collapse;
-
-const MyFormItemGroup = ({ prefix, children }) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(
-    () => [...prefixPath, ...toArr(prefix)],
-    [prefixPath, prefix]
-  );
-
-  return (
-    <MyFormItemContext.Provider value={concatPath}>
-      {children}
-    </MyFormItemContext.Provider>
-  );
-};
-function toArr(str) {
-  return Array.isArray(str) ? str : [str];
-}
-const MyFormItem = ({ name, ...props }) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName =
-    name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
-const formItemLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 14 },
-};
-
 const PanelContainer = ({ setConfig }) => {
   const [isPending, startTransition] = useTransition();
   const onValuesChange = (values, allValues) => {
