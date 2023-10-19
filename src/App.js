@@ -4,15 +4,11 @@ import { useDeepCompareEffect, useRequest } from "ahooks";
 import PanelContainer from "./panelComponents/PanelContainer";
 import PDFContainer from "./components/PDFContainer";
 import { pdf1 } from "./utils";
-const render = (template, data) => {
+const render = (template, dataSource) => {
   const regex = /{{([\d\D]*?)}}/g;
   const replacedTemplate = template.replace(regex, ($0, $1) => {
-    try {
-      return eval(`with(data){${$1}}`);
-    } catch (error) {
-      console.error(error);
-      return "";
-    }
+    const data = Object.assign({}, dataSource);
+    return `${data[$1]}`;
   });
   return replacedTemplate;
 };
@@ -41,8 +37,8 @@ const INIT_PDF_CONFIG = {
 };
 window.__INIT_PDF_CONFIG__ = INIT_PDF_CONFIG;
 function formData(config, data) {
-  console.log(render(JSON.stringify(config), data), data, "config");
-  return config;
+  const newData = render(JSON.stringify(config), data);
+  return JSON.parse(newData);
 }
 const App = () => {
   const iframeRef = useRef(null);
