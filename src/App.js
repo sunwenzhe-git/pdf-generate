@@ -42,6 +42,8 @@ function formData(config, data) {
 }
 const App = () => {
   const iframeRef = useRef(null);
+  const formRef = useRef(null);
+
   const [config, setConfig] = useState(null);
   const { data, error, loading } = useRequest(getData);
   const configData = useDeferredValue(config);
@@ -59,7 +61,11 @@ const App = () => {
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "row" }}>
       <div style={{ flex: 1, padding: 30 }}>
-        <PanelContainer setConfig={setConfig} />
+        <PanelContainer
+          setConfig={setConfig}
+          config={config}
+          formRef={formRef}
+        />
       </div>
       <div style={{ position: "relative", flex: 1 }}>
         <div
